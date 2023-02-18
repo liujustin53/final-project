@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyObject : MonoBehaviour
 {
+    public float lifeTime = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,16 +14,24 @@ public class DestroyObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        lifeTime -= Time.deltaTime;
+        if(lifeTime <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Player"))
+        
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
             Destroy(gameObject, 1.0f);
         }
-        
     }
 }

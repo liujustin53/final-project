@@ -24,4 +24,12 @@ public class EnemyHit : MonoBehaviour
             Destroy(gameObject, 1.0f);
         }
     }
+
+    public void DamageEnemy()
+    {
+        Debug.Log("enemy hit");
+        gameObject.SetActive(false);
+        Destroy(gameObject, 1.0f);
+
+    }
 }

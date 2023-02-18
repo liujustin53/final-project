@@ -21,9 +21,9 @@ public class ShootProjectile : MonoBehaviour
     public void FireAt(Vector3 target)
     {
         Vector3 direction = (target - transform.position).normalized;
-        GameObject projectile = Instantiate(projectilePrefab, transform.position + direction, transform.rotation);
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        transform.LookAt(target, Vector3.up);
 
-        rb.AddForce(direction * projectileSpeed, ForceMode.VelocityChange);
+        Instantiate(projectilePrefab, transform.position + direction, transform.rotation);
+       
     }
 }
