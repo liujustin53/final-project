@@ -1,34 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
     public static bool isGameOver;
     private static LevelManager instance;
 
-    private static List<LevelListener> listeners;
+    public static UnityEvent<GameOver> onGameOver;
+
     // Start is called before the first frame update
     void Start()
     {
-        listeners = new List<LevelListener>();
         isGameOver = false;
     }
     public static void Lose() {
         isGameOver = true;
-        foreach (LevelListener listener in listeners) {
-            listener.OnLose();
-        }
+        onGameOver.Invoke(GameOver.Lose);
     }
 
     public static void Win() {
         isGameOver = true;
-        foreach (LevelListener listener in listeners) {
-            listener.OnWin();
-        }
-    }
-
-    public static void Subscribe(LevelListener subscriber) {
-        listeners.Add(subscriber);
+        onGameOver.Invoke(GameOver.Win);
     }
 }

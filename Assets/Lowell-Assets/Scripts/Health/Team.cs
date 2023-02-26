@@ -1,5 +1,6 @@
+[System.Flags]
 public enum Team
 {
-    Player,
+    Player = 1,
     Enemy
 }
