@@ -7,6 +7,9 @@ public class Element : ScriptableObject
     public Element[] vulnerabilities;
     public Element[] resistances;
 
+    [ColorUsage(false, true)]
+    public Color damageColor = Color.white;
+
     public bool In(Element[] elements) {
         return Array.Exists<Element>(elements, element => element == this);
     }

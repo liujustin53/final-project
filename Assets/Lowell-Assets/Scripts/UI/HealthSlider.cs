@@ -18,7 +18,7 @@ public class HealthSlider : MonoBehaviour
         this.target.damageEvent.AddListener(this.showDamage);
     }
 
-    void showDamage(int dmg) {
+    void showDamage(int dmg, Element element) {
         this.healthSlider.value = this.target.hp;
     }
 

@@ -3,12 +3,19 @@ using UnityEngine.Events;
 
 public class Killable: MonoBehaviour
 {
-    [SerializeField] private Pooler<Killable> pooler;
+    [HideInInspector] public Pooler pooler;
     private UnityEvent _killEvent;
     public UnityEvent killEvent => _killEvent;
 
+    private bool alreadyKilled = false;
+
     protected virtual void Start() {
         _killEvent = new UnityEvent();
+    }
+
+    protected virtual void OnEnable()
+    {
+        alreadyKilled = false;
     }
     
     public static void Kill(GameObject toKill, float delay = 0) {
@@ -20,16 +27,18 @@ public class Killable: MonoBehaviour
     }
 
     public static void Kill(Killable toKill, float delay = 0) {
-        toKill.Invoke("_Kill", delay);
+        toKill.Kill(delay);
     }
 
-    public void KillThis(float delay = 0) {
+    public void Kill(float delay = 0) {
         Invoke("_Kill", delay);
     }
 
     public virtual float BeforeKill() { return 0.0f; }
 
     private void _Kill() {
+        if (alreadyKilled) return;
+        alreadyKilled = true;
         killEvent.Invoke();
         Invoke("_Destroy", BeforeKill());
     }

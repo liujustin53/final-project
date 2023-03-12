@@ -8,12 +8,14 @@ public class Mortal : Killable, Damageable
     [SerializeField] protected Element element;
     [SerializeField] protected Team _team;
 
-    [HideInInspector] public UnityEvent<int> damageEvent;
-    [HideInInspector] public UnityEvent<int> healEvent;
+    UnityEvent<int, Element> _damageEvent;
+    UnityEvent<int> _healEvent;
    
     public int maxHp => _maxHp;
     public int hp => _currentHp;
     public Team team => _team;
+    public UnityEvent<int, Element> damageEvent => _damageEvent;
+    public UnityEvent<int> healEvent => _healEvent;
 
     private int _currentHp;
     
@@ -30,9 +32,9 @@ public class Mortal : Killable, Damageable
         if (this.element != null) {
             realDamage = this.element.GetRealDamage(dmg, damageType);
         }
+        this.damageEvent.Invoke(realDamage, damageType);
 
         this._currentHp = Mathf.Max(0, _currentHp - realDamage);
-        this.damageEvent.Invoke(realDamage);
         if (this._currentHp == 0) {
             Killable.Kill(this.gameObject);
         }
