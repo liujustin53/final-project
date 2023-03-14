@@ -27,9 +27,6 @@ public class DamageFlash : MonoBehaviour
         initialEmission = renderer.sharedMaterial.GetColor("_EmissionColor");
 
         Damageable damageable = GetComponent<Damageable>();
-        if (damageable == null) {
-            Debug.Log("Null Damageable?");
-        }
         damageable.damageEvent.AddListener(Damage);
         damageable.healEvent.AddListener(Heal);
     }

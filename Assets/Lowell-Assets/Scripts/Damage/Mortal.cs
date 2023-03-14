@@ -8,8 +8,8 @@ public class Mortal : Killable, Damageable
     [SerializeField] protected Element element;
     [SerializeField] protected Team _team;
 
-    UnityEvent<int, Element> _damageEvent;
-    UnityEvent<int> _healEvent;
+    protected UnityEvent<int, Element> _damageEvent = new UnityEvent<int, Element>();
+    protected UnityEvent<int> _healEvent = new UnityEvent<int>();
    
     public int maxHp => _maxHp;
     public int hp => _currentHp;
