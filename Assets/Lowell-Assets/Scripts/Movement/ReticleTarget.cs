@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Moves to the point under the reticle.
 public class ReticleTarget : MonoBehaviour
 {
     [SerializeField] float maxDistance = 100;

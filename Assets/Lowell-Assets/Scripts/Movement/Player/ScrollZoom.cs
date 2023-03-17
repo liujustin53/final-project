@@ -5,14 +5,14 @@ using UnityEngine;
 public class ScrollZoom : MonoBehaviour
 {
     [SerializeField] ControlParameters controlParams;
-    private Cinemachine.Cinemachine3rdPersonFollow follow;
+    private Cinemachine.Cinemachine3rdPersonFollow virtualCamera;
 
     private float zoomFac;
     private float targetZoomFac;
     // Start is called before the first frame update
     void Start()
     {
-        follow = GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.Cinemachine3rdPersonFollow>();
+        virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.Cinemachine3rdPersonFollow>();
         zoomFac = 0.5f;
         targetZoomFac = 0.5f;
     }
@@ -24,7 +24,7 @@ public class ScrollZoom : MonoBehaviour
         targetZoomFac = Mathf.Clamp01(targetZoomFac);
         zoomFac = Mathf.Lerp(zoomFac, targetZoomFac, DampedFac(controlParams.zoomSmoothing));
         
-        follow.CameraDistance = Mathf.SmoothStep(controlParams.minCameraDistance, controlParams.maxCameraDistance, zoomFac);
+        virtualCamera.CameraDistance = Mathf.SmoothStep(controlParams.minCameraDistance, controlParams.maxCameraDistance, zoomFac);
     }
 
     float DampedFac(float smoothing) {

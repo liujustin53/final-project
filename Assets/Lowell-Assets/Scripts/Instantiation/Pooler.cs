@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
+/// Reduces memory volatility by reusing old GameObjects.
+/// Best used for things like projectiles or other things that need to be instantiated / destroyed
+/// frequently or in large quantities.
 public class Pooler: MonoBehaviour
 {
     [SerializeField] private Killable _prefab;

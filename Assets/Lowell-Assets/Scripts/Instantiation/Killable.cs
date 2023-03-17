@@ -1,45 +1,46 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+// Gives the attached GameObject more advanced death behaviour
 public class Killable: MonoBehaviour
 {
     [HideInInspector] public Pooler pooler;
-    private UnityEvent _killEvent;
-    public UnityEvent killEvent => _killEvent;
 
     private bool alreadyKilled = false;
-
-    protected virtual void Start() {
-        _killEvent = new UnityEvent();
-    }
 
     protected virtual void OnEnable()
     {
         alreadyKilled = false;
     }
-    
+
+    /// Kill or Destroy the given GameObject; behaves similarly to Destroy
     public static void Kill(GameObject toKill, float delay = 0) {
         if (toKill.TryGetComponent<Killable>(out Killable killable)) {
-            Killable.Kill(killable, delay);
+            killable.Kill(delay);
         } else {
             Destroy(toKill, delay);
         }
     }
 
-    public static void Kill(Killable toKill, float delay = 0) {
-        toKill.Kill(delay);
-    }
-
+    /// Kills this; behaves similarly to Destroy
     public void Kill(float delay = 0) {
         Invoke("_Kill", delay);
     }
 
+    /// <summary>
+    /// Runs when Killed.
+    /// </summary>
+    /// <returns>
+    /// The number of seconds to delay the actual destruction of the object.
+    /// </returns>
     public virtual float BeforeKill() { return 0.0f; }
 
     private void _Kill() {
         if (alreadyKilled) return;
         alreadyKilled = true;
-        killEvent.Invoke();
+        foreach (KillResponse response in GetComponents<KillResponse>()) {
+            response.OnKilled();
+        }
         Invoke("_Destroy", BeforeKill());
     }
 

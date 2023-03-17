@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/// Simply produces events when damaged or healed.
 [DisallowMultipleComponent]
 public class Invulnerable : MonoBehaviour, Damageable
 {

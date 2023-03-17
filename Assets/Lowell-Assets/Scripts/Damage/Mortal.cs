@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
+/// Your standard mortal being. It has limited Health Points, and can take damage and receive healing.
 [DisallowMultipleComponent]
 public class Mortal : Killable, Damageable
 {
@@ -19,9 +21,8 @@ public class Mortal : Killable, Damageable
 
     private int _currentHp;
     
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
         this._currentHp = this.maxHp;
     }
 
@@ -46,9 +47,5 @@ public class Mortal : Killable, Damageable
         hp = Mathf.Min(hp, this.maxHp - this._currentHp);
         this._currentHp = Mathf.Min(this.maxHp, hp);
         this.healEvent.Invoke(hp);
-    }
-
-    protected virtual void Die() {
-        Killable.Kill(this);
     }
 }

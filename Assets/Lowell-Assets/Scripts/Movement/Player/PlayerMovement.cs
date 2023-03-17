@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] protected MovementParams movementParams;
-    
+    protected ControlParameters controlParameters;
     
     CharacterController controller;
 
@@ -23,12 +23,14 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         jumpVel = Mathf.Sqrt(-movementParams.jumpHeight * Physics.gravity.y);
+        controlParameters = ControlParameters.instance;
     }
 
+    // Callback for pressing the "Jump" control
     public void OnJump() {
-        jumpCountdown = movementParams.jumpBuffer;
+        jumpCountdown = controlParameters.jumpBuffer;
     }
-
+    // Callback for releasing the "Jump" control
     public void OnJumpRelease() {
         coyoteCountdown = 0;
         if (jumping) {
@@ -40,39 +42,48 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        float control = controller.isGrounded ? movementParams.groundControl : movementParams.airControl;
         if (InputManager.move.magnitude > 0.05) {
             FaceForward();
         }
-        Vector3 targetVelocity = InputManager.move.x * transform.right + InputManager.move.y * transform.forward;
-        targetVelocity *= movementParams.speed;
-
-
-        horizontalVelocity = DampedControl(horizontalVelocity, targetVelocity, control);
-
+        
+        HorizontalMovement();
         JumpAndFall();
 
         controller.Move((horizontalVelocity + Vector3.up * verticalVelocity) * Time.deltaTime);
-
-        coyoteCountdown -= Time.unscaledDeltaTime;
-        jumpCountdown -= Time.unscaledDeltaTime;
     }
 
+    // Move based on the InputManager's movement axes (local space)
+    void HorizontalMovement() {
+        Vector3 targetVelocity = InputManager.move.x * transform.right + InputManager.move.y * transform.forward;
+        targetVelocity *= movementParams.speed;
+
+        float friction = controller.isGrounded ? movementParams.groundControl : movementParams.airControl;
+        horizontalVelocity = DampedControl(horizontalVelocity, targetVelocity, friction);
+    }
+
+    // Handle vertical velocity management
     void JumpAndFall() {
         if (controller.isGrounded) {
-            coyoteCountdown = movementParams.coyoteTime;
+            coyoteCountdown = controlParameters.coyoteTime;
             verticalVelocity = 0;
         }
+
         if (coyoteCountdown > 0 && jumpCountdown > 0) {
             verticalVelocity = jumpVel;
             jumping = true;
         }
+        
         verticalVelocity += Physics.gravity.y * Time.deltaTime;
         if (verticalVelocity <= 0) {
             jumping = false;
         }
+
+        
+        coyoteCountdown -= Time.unscaledDeltaTime;
+        jumpCountdown -= Time.unscaledDeltaTime;
     }
+
+    // Rotate towards the main camera's forward direction (about the y axis)
     void FaceForward() {
         Vector3 eulers = transform.eulerAngles;
         float target = Camera.main.transform.eulerAngles.y;
@@ -81,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(eulers.x, next, eulers.z);
     }
 
+    // Helpers for damped movement
     float DampedFac(float control) {
         return 1 - Mathf.Pow(1 - control, 4 * Time.deltaTime);
     }
@@ -92,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 
+    // Subscribe / unsubscribe to jump callbacks
     void OnEnable()
     {
         InputManager.jump.AddListener(OnJump);

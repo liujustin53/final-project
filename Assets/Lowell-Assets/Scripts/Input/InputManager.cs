@@ -2,7 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-
+/// <summary>
+/// Gives access to the Input System found in Input->PlayerControls through callbacks.
+/// </summary>
+/// <remarks>
+/// This uses Unity's "new" input system, which makes it easier to configure controls globally,
+/// rather than hunting through individual scripts.
+/// It also provides a base for allowing controller input.
+/// </remarks>
 [CreateAssetMenu(menuName = "Game/Controls/Input Manager")]
 public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
 {

@@ -1,16 +1,17 @@
 using UnityEngine;
 
+// Spawns things with the same location and rotation as the specified object.
 public class PointSpawner : Spawner
 {
-    [SerializeField] Transform muzzle;
+    [SerializeField] Transform point;
 
     void Start() {
-        if (muzzle == null) {
-            muzzle = transform;
+        if (point == null) {
+            point = transform;
         }
     }
 
     public override Killable Fire() {
-        return Spawn(muzzle.position, muzzle.rotation);
+        return Spawn(point.position, point.rotation);
     }
 }

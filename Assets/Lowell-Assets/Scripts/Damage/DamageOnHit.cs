@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// Damages a Damageable when it collides with one.
 [DisallowMultipleComponent]
 public class DamageOnHit : Killable
 {
@@ -9,7 +10,8 @@ public class DamageOnHit : Killable
     [SerializeField] bool dieOnHit;
     [SerializeField] bool dieOnMiss;
 
-
+    /// <summary> Damage the given Damageable, and self-destruct if dieOnHit </summary>
+    /// <returns> true if it succeeded in damaging the target </returns>
     protected bool Damage(Damageable other) {
         if (other.team.In(canDamage)) {
             other.Damage(this.damage, this.damageType);

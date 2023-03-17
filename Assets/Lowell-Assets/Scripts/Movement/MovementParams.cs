@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// This makes it easier to adjust an entity's movement parameters globally.
 [CreateAssetMenu(menuName = "Game/Movement/Movement Parameters")]
 public class MovementParams : ScriptableObject
 {
@@ -9,7 +10,4 @@ public class MovementParams : ScriptableObject
     public float groundControl = 0.99f;
 
     public float turnControl = 0.95f;
-
-    public float coyoteTime = 0.2f;
-    public float jumpBuffer = 0.2f;
 }

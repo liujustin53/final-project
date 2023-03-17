@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+// The backbone of the elemental damage system
 [CreateAssetMenu(menuName = "Game/Damage/Element")]
 public class Element : ScriptableObject
 {
@@ -14,6 +15,7 @@ public class Element : ScriptableObject
         return Array.Exists<Element>(elements, element => element == this);
     }
 
+    // Calculate the actual damage of an attack, taking resistances and vulnerabilities into account
     public int GetRealDamage(int dmg, Element type) {
         if (type.In(this.vulnerabilities)) {
             return dmg * 2;
