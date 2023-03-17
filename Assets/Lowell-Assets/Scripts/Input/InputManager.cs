@@ -6,16 +6,18 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Game/Controls/Input Manager")]
 public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
 {
+    public static InputManager instance;
     PlayerControls playerControls;
     PlayerControls.PlayerActions playerActions;
 
-    [HideInInspector] public Vector2 deltaLook;
-    [HideInInspector] public Vector2 move;
-    [HideInInspector] public UnityEvent jump;
-    [HideInInspector] public UnityEvent jumpRelease;
-    [HideInInspector] public UnityEvent fire;
-    [HideInInspector] public UnityEvent dodge;
-    [HideInInspector] public float deltaZoom;
+    public static Vector2 deltaLook => instance._deltaLook;
+    public static Vector2 move => instance._move;
+    public static UnityEvent jump => instance._jump;
+    public static UnityEvent jumpRelease => instance._jumpRelease;
+    public static UnityEvent fire => instance._fire;
+    public static UnityEvent fireRelease => instance._fireRelease;
+    public static UnityEvent dodge => instance._dodge;
+    public static float deltaZoom => instance._deltaZoom;
 
 
     void Awake()
@@ -24,22 +26,26 @@ public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
         playerActions = playerControls.Player;
 
         playerActions.SetCallbacks(this);
+        instance = this;
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        move = context.ReadValue<Vector2>();
+        _move = context.ReadValue<Vector2>();
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        deltaLook = context.ReadValue<Vector2>();
+        _deltaLook = context.ReadValue<Vector2>();
     }
 
     public void OnFire(InputAction.CallbackContext context)
     {
         if (context.started) {
             fire.Invoke();
+        }
+        if (context.canceled) {
+            fireRelease.Invoke();
         }
     }
 
@@ -55,7 +61,7 @@ public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
 
     public void OnZoom(InputAction.CallbackContext context)
     {
-        deltaZoom = context.ReadValue<float>();
+        _deltaZoom = context.ReadValue<float>();
     }
 
     public void OnEnable()
@@ -76,4 +82,13 @@ public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
         Awake();
     }
 #endif
+
+    [HideInInspector] public Vector2 _deltaLook;
+    [HideInInspector] public Vector2 _move;
+    [HideInInspector] public UnityEvent _jump;
+    [HideInInspector] public UnityEvent _jumpRelease;
+    [HideInInspector] public UnityEvent _fire;
+    [HideInInspector] public UnityEvent _fireRelease;
+    [HideInInspector] public UnityEvent _dodge;
+    [HideInInspector] public float _deltaZoom;
 }

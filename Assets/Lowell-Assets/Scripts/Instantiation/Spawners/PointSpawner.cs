@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GunlikeSpawner : Spawner
+public class PointSpawner : Spawner
 {
     [SerializeField] Transform muzzle;
 

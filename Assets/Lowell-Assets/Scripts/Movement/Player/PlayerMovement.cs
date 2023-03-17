@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] protected InputManager input;
     [SerializeField] protected MovementParams movementParams;
     
     
@@ -24,9 +23,6 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         jumpVel = Mathf.Sqrt(-movementParams.jumpHeight * Physics.gravity.y);
-        if (input == null) {
-            input = FindObjectOfType<InputManager>();
-        }
     }
 
     public void OnJump() {
@@ -46,10 +42,10 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float control = controller.isGrounded ? movementParams.groundControl : movementParams.airControl;
-        if (input.move.magnitude > 0.05) {
+        if (InputManager.move.magnitude > 0.05) {
             FaceForward();
         }
-        Vector3 targetVelocity = input.move.x * transform.right + input.move.y * transform.forward;
+        Vector3 targetVelocity = InputManager.move.x * transform.right + InputManager.move.y * transform.forward;
         targetVelocity *= movementParams.speed;
 
 
@@ -98,13 +94,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnEnable()
     {
-        input.jump.AddListener(OnJump);
-        input.jumpRelease.AddListener(OnJumpRelease);
+        InputManager.jump.AddListener(OnJump);
+        InputManager.jumpRelease.AddListener(OnJumpRelease);
     }
 
     void OnDisable()
     {
-        input.jump.RemoveListener(OnJump);
-        input.jumpRelease.RemoveListener(OnJumpRelease);
+        InputManager.jump.RemoveListener(OnJump);
+        InputManager.jumpRelease.RemoveListener(OnJumpRelease);
     }
 }
