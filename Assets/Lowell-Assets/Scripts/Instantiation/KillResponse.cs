@@ -1,4 +1,4 @@
 public interface KillResponse {
-    /// Called the GameObject is killed
+    /// <summary> Called the GameObject is killed </summary>
     void OnKilled();
 }

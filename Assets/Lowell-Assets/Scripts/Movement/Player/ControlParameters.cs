@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-// Globally adjusts player control settings.
+/// Globally adjusts player control settings.
 [CreateAssetMenu(menuName = "Game/Controls/Control Parameters")]
 public class ControlParameters : ScriptableObject
 {

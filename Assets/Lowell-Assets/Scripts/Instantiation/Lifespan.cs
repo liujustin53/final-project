@@ -1,6 +1,6 @@
 using UnityEngine;
 
-/// Limits the GameObject's lifespan.
+/// <summary> Limits the GameObject's lifespan. </summary>
 public class Lifespan : MonoBehaviour
 {
     [SerializeField] private float lifespan = 2.0f;

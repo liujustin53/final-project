@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Spawns things with the same location and rotation as the specified object.
+/// <summary> Spawns things with the same location and rotation as the specified object. </summary>
 public class PointSpawner : Spawner
 {
     [SerializeField] Transform point;

@@ -13,7 +13,8 @@ public class Killable: MonoBehaviour
         alreadyKilled = false;
     }
 
-    /// Kill or Destroy the given GameObject; behaves similarly to Destroy
+    /// <summary> Kill or Destroy the given GameObject; </summary>
+    /// <remarks> behaves similarly to Destroy </remarks>
     public static void Kill(GameObject toKill, float delay = 0) {
         if (toKill.TryGetComponent<Killable>(out Killable killable)) {
             killable.Kill(delay);
@@ -22,7 +23,7 @@ public class Killable: MonoBehaviour
         }
     }
 
-    /// Kills this; behaves similarly to Destroy
+    /// <summary> Kills this </summary>
     public void Kill(float delay = 0) {
         Invoke("_Kill", delay);
     }

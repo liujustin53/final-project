@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-// Spawns Killables with the owner's position and rotation.
-// Works with either Poolers or Killables.
+/// <summary> Spawns Killables with the owner's position and rotation. </summary>
+/// <remarks> Works with either Poolers or Killables. </remarks>
 public class Spawner: MonoBehaviour
 {
     [SerializeField] private bool usePooler = true;
