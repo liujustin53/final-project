@@ -23,7 +23,7 @@ public class Pooler: MonoBehaviour
             parent = transform;
         }
         var inactiveParentObject = new GameObject(name + "_inactive");
-        inactiveParent.transform.parent = transform;
+        inactiveParentObject.transform.parent = transform;
         inactiveParentObject.SetActive(false);
         inactiveParent = inactiveParentObject.transform;
         _pool = new ObjectPool<Killable>(

@@ -11,9 +11,8 @@ using UnityEngine.Events;
 /// It also provides a base for allowing controller input.
 /// </remarks>
 [CreateAssetMenu(menuName = "Game/Controls/Input Manager")]
-public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
+public class InputManager : SingletonScriptableObject<InputManager>, PlayerControls.IPlayerActions
 {
-    public static InputManager instance;
     PlayerControls playerControls;
     PlayerControls.PlayerActions playerActions;
 
@@ -31,7 +30,6 @@ public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
 
     void Awake()
     {
-        instance = this;
         playerControls = new PlayerControls();
         playerActions = playerControls.Player;
 
@@ -86,16 +84,17 @@ public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
             playerControls.Disable();
         }
     }
-#if UNITY_EDITOR
-    void OnValidate() {
-        Awake();
-    }
 
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.started) {
             pause.Invoke();
         }
+    }
+
+#if UNITY_EDITOR
+    void OnValidate() {
+        Awake();
     }
 #endif
 

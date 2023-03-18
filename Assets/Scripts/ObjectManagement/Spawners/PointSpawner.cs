@@ -5,7 +5,7 @@ public class PointSpawner : Spawner
 {
     [SerializeField] Transform point;
 
-    void Start() {
+    void Awake() {
         if (point == null) {
             point = transform;
         }
