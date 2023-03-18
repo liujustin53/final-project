@@ -23,6 +23,7 @@ public class Pooler: MonoBehaviour
             parent = transform;
         }
         var inactiveParentObject = new GameObject(name + "_inactive");
+        inactiveParent.transform.parent = transform;
         inactiveParentObject.SetActive(false);
         inactiveParent = inactiveParentObject.transform;
         _pool = new ObjectPool<Killable>(
@@ -42,7 +43,14 @@ public class Pooler: MonoBehaviour
         );
     }
 
-    public Killable Spawn() => Spawn(transform.position);
+
+    /// <summary> Spawn an object from the pool. Defaults to the spawner's transform. /summary>
+    public Killable Spawn() => Spawn(transform.position, transform.rotation);
+
+    /// <summary> Spawn an object from the pool. Defaults to the spawner's transform. /summary>
+    public Killable Spawn(Vector3 position) => Spawn(position, transform.rotation);
+
+    /// <summary> Spawn an object from the pool. Defaults to the spawner's transform. /summary>
     public Killable Spawn(Vector3 position, Quaternion rotation = new Quaternion()) {
         Killable obj = _pool.Get();
         obj.gameObject.transform.position = position;
@@ -51,7 +59,8 @@ public class Pooler: MonoBehaviour
         return obj;
     }
 
-    // Immediately stows the given Killable.
+    /// <summary> Immediately stows the given Killable into the pool.</summary>
+    /// <remarks> Should only really be used by Killable </remarks>
     public void Release(Killable killable) {
         _pool.Release(killable);
     }

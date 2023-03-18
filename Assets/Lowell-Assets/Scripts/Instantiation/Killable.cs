@@ -52,4 +52,8 @@ public class Killable: MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    protected virtual void OnDisable() {
+        CancelInvoke();
+    }
 }

@@ -9,9 +9,4 @@ public class Lifespan : MonoBehaviour
     {
         Killable.Kill(gameObject, lifespan);
     }
-
-    void OnDisable()
-    {
-        CancelInvoke();
-    }
 }
