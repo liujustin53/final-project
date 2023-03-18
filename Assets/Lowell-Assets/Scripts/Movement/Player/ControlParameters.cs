@@ -24,4 +24,10 @@ public class ControlParameters : ScriptableObject
     void Awake() {
         instance = this;
     }
+
+#if UNITY_EDITOR
+    void OnValidate() {
+        Awake();
+    }
+#endif
 }

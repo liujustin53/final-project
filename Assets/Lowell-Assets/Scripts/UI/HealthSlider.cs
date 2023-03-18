@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthSlider : MonoBehaviour
+public class HealthSlider : MonoBehaviour, DamageListener, HealListener
 {
     [SerializeField] protected Slider healthSlider;
-    [SerializeField] protected Mortal target;
+    private Mortal mortal;
     // Start is called before the first frame update
     void Start()
     {
+        this.mortal = GetComponent<Mortal>();
+
         this.healthSlider.minValue = 0;
-        this.healthSlider.maxValue = this.target.maxHp;
+        this.healthSlider.maxValue = this.mortal.maxHp;
         this.healthSlider.wholeNumbers = true;
-        this.healthSlider.value = this.target.hp;
-        this.target.healEvent.AddListener(this.showHeal);
-        this.target.damageEvent.AddListener(this.showDamage);
+        this.healthSlider.value = this.mortal.hp;
     }
 
-    void showDamage(int dmg, Element element) {
-        this.healthSlider.value = this.target.hp;
+    public void OnDamage(int dmg, Element element) {
+        this.healthSlider.value = this.mortal.hp;
     }
 
     // Update is called once per frame
-    void showHeal(int hp)
+    public void OnHeal(int hp)
     {
-        this.healthSlider.value = this.target.hp;
+        this.healthSlider.value = this.mortal.hp;
     }
 }

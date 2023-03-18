@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageFlash : MonoBehaviour
+public class DamageFlash : MonoBehaviour, DamageListener
 {
     const string emissionKey = "_EmissionColor";
     public float frequency = 10;
@@ -25,10 +25,6 @@ public class DamageFlash : MonoBehaviour
 
         renderer.sharedMaterial.EnableKeyword("_EMISSION");
         initialEmission = renderer.sharedMaterial.GetColor("_EmissionColor");
-
-        Damageable damageable = GetComponent<Damageable>();
-        damageable.damageEvent.AddListener(Damage);
-        damageable.healEvent.AddListener(Heal);
     }
 
     // Update is called once per frame
@@ -48,11 +44,9 @@ public class DamageFlash : MonoBehaviour
         countdown -= Time.deltaTime;
     }
 
-    public void Damage(int dmg, Element element)
+    public void OnDamage(int dmg, Element element)
     {
         countdown = duration;
         flickerColor = element.damageColor;
     }
-
-    public void Heal(int hp) {}
 }

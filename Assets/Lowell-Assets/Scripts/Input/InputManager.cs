@@ -26,14 +26,16 @@ public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
     public static UnityEvent dodge => instance._dodge;
     public static float deltaZoom => instance._deltaZoom;
 
+    public static UnityEvent pause => instance._pause;
+
 
     void Awake()
     {
+        instance = this;
         playerControls = new PlayerControls();
         playerActions = playerControls.Player;
 
         playerActions.SetCallbacks(this);
-        instance = this;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -88,6 +90,13 @@ public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
     void OnValidate() {
         Awake();
     }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.started) {
+            pause.Invoke();
+        }
+    }
 #endif
 
     [HideInInspector] public Vector2 _deltaLook;
@@ -98,4 +107,5 @@ public class InputManager : ScriptableObject, PlayerControls.IPlayerActions
     [HideInInspector] public UnityEvent _fireRelease;
     [HideInInspector] public UnityEvent _dodge;
     [HideInInspector] public float _deltaZoom;
+    [HideInInspector] public UnityEvent _pause;
 }

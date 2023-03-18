@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16115efdcc3d0db3e84e40690d214664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: {fileID: 11400000, guid: 44c1e9a07e353be63aab7da295fcc6b9, type: 2}
+  <team>k__BackingField: {fileID: 11400000, guid: 44c1e9a07e353be63aab7da295fcc6b9, type: 2}
 --- !u!136 &485780278
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   usePooler: 1
   pooler: {fileID: 1145913597}
   prefab: {fileID: 2446050470578459077, guid: 73dedeaec680e4a0aa7fc05f294c8feb, type: 3}
-  muzzle: {fileID: 1782420136}
+  point: {fileID: 0}
 --- !u!114 &1413016370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16115efdcc3d0db3e84e40690d214664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: {fileID: 11400000, guid: 44c1e9a07e353be63aab7da295fcc6b9, type: 2}
+  <team>k__BackingField: {fileID: 11400000, guid: 44c1e9a07e353be63aab7da295fcc6b9, type: 2}
 --- !u!1 &2112494453
 GameObject:
   m_ObjectHideFlags: 0

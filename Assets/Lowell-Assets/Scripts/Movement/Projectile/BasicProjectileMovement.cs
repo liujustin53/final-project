@@ -13,7 +13,6 @@ public class BasicProjectileMovement : MonoBehaviour
     }
     void OnEnable()
     {
-
         rigidbody.velocity = speed * transform.forward;
         rigidbody.angularVelocity = Vector3.zero;
     }

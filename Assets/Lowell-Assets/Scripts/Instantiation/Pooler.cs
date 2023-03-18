@@ -13,6 +13,7 @@ public class Pooler: MonoBehaviour
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxSize = 10000;
     [SerializeField] Transform parent;
+    Transform inactiveParent;
     private ObjectPool<Killable> _pool;
 
     public Killable prefab => _prefab;
@@ -21,10 +22,14 @@ public class Pooler: MonoBehaviour
         if (parent == null) {
             parent = transform;
         }
+        var inactiveParentObject = new GameObject(name + "_inactive");
+        inactiveParentObject.SetActive(false);
+        inactiveParent = inactiveParentObject.transform;
         _pool = new ObjectPool<Killable>(
             createFunc: () => { 
-                Killable instantiated =  Instantiate(prefab); 
+                Killable instantiated =  Instantiate(prefab, inactiveParent); 
                 instantiated.pooler = this;
+                instantiated.gameObject.SetActive(false);
                 instantiated.transform.SetParent(parent);
                 return instantiated;
                 },

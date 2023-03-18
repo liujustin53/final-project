@@ -22,7 +22,6 @@ public class Spell : MonoBehaviour
     }
 
     public void StartCast() {
-        Debug.Log("Invoking Cast On Spell");
         if (fireMode == FireMode.TOGGLE) {
             firing = !firing;
         } else {
