@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Player Movement Params
   m_EditorClassIdentifier: 
   speed: 7
-  jumpHeight: 2
+  jumpHeight: 4
   airControl: 0.2
-  groundControl: 0.85
+  groundControl: 0.98
   turnControl: 0.98
-  coyoteTime: 0.1
-  jumpBuffer: 0.1
