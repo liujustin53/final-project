@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     protected ControlParameters controlParameters;
     
     CharacterController controller;
+    Animator animator;
 
     Vector3 horizontalVelocity;
     float verticalVelocity;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     float jumpCountdown;
     float coyoteCountdown;
     bool jumping;
+    bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         jumpVel = Mathf.Sqrt(-movementParams.jumpHeight * Physics.gravity.y);
         controlParameters = ControlParameters.instance;
+        animator = GetComponent<Animator>();
     }
 
     // Callback for pressing the "Jump" control
@@ -42,23 +45,27 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        JumpAndFall();
+        HorizontalMovement();
         if (InputManager.move.magnitude > 0.05) {
             FaceForward();
         }
-        
-        HorizontalMovement();
-        JumpAndFall();
 
         controller.Move((horizontalVelocity + Vector3.up * verticalVelocity) * Time.deltaTime);
     }
 
     // Move based on the InputManager's movement axes (local space)
     void HorizontalMovement() {
-        Vector3 targetVelocity = InputManager.move.x * transform.right + InputManager.move.y * transform.forward;
+        Vector3 right = Vector3.Scale(new Vector3(1, 0, 1), Camera.main.transform.right).normalized;
+        Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), Camera.main.transform.forward).normalized;
+        Vector3 targetVelocity = InputManager.move.x * right + InputManager.move.y * forward;
         targetVelocity *= movementParams.speed;
 
-        float friction = controller.isGrounded ? movementParams.groundControl : movementParams.airControl;
+        float friction = isGrounded ? movementParams.groundControl : movementParams.airControl;
         horizontalVelocity = DampedControl(horizontalVelocity, targetVelocity, friction);
+
+        animator.SetFloat("Speed", horizontalVelocity.magnitude);
     }
 
     // Handle vertical velocity management
@@ -67,17 +74,20 @@ public class PlayerMovement : MonoBehaviour
             coyoteCountdown = controlParameters.coyoteTime;
             verticalVelocity = 0;
         }
+        isGrounded = coyoteCountdown > 0;
+        verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
-        if (coyoteCountdown > 0 && jumpCountdown > 0) {
+        if (coyoteCountdown > 0 && jumpCountdown > 0 && !jumping) {
             verticalVelocity = jumpVel;
             jumping = true;
+            animator.SetTrigger("Jump");
         }
         
-        verticalVelocity += Physics.gravity.y * Time.deltaTime;
         if (verticalVelocity <= 0) {
             jumping = false;
         }
 
+        animator.SetBool("Grounded", isGrounded && !jumping);
         
         coyoteCountdown -= Time.unscaledDeltaTime;
         jumpCountdown -= Time.unscaledDeltaTime;
@@ -86,8 +96,8 @@ public class PlayerMovement : MonoBehaviour
     // Rotate towards the main camera's forward direction (about the y axis)
     void FaceForward() {
         Vector3 eulers = transform.eulerAngles;
-        float target = Camera.main.transform.eulerAngles.y;
-        float control = controller.isGrounded ? movementParams.turnControl : 0.0f;
+        float target = Mathf.Atan2(horizontalVelocity.x, horizontalVelocity.z) * Mathf.Rad2Deg;
+        float control = isGrounded ? movementParams.turnControl : 0.0f;
         float next = Mathf.LerpAngle(eulers.y, target, DampedFac(control));
         transform.rotation = Quaternion.Euler(eulers.x, next, eulers.z);
     }

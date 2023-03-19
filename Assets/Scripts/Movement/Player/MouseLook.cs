@@ -4,12 +4,13 @@ using UnityEngine.InputSystem;
 public class MouseLook : MonoBehaviour
 {
     [HideInInspector] public float eulerY => look.y;
-    [SerializeField] private ControlParameters controlParameters;
+    private ControlParameters controlParameters;
     private Vector3 look;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        controlParameters = ControlParameters.instance;
     }
 
     public void Look() {

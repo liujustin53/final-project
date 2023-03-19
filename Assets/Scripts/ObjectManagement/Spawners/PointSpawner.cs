@@ -11,7 +11,7 @@ public class PointSpawner : Spawner
         }
     }
 
-    public override Killable Fire() {
+    public override Killable[] Fire() {
         return Spawn(point.position, point.rotation);
     }
 }

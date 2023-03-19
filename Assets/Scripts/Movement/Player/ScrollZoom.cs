@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScrollZoom : MonoBehaviour
 {
-    [SerializeField] ControlParameters controlParams;
+    ControlParameters controlParams;
     private Cinemachine.Cinemachine3rdPersonFollow virtualCamera;
 
     private float zoomFac;
@@ -12,9 +10,11 @@ public class ScrollZoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        controlParams = ControlParameters.instance;
         virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.Cinemachine3rdPersonFollow>();
-        zoomFac = 0.5f;
-        targetZoomFac = 0.5f;
+        zoomFac = (virtualCamera.CameraDistance - controlParams.minCameraDistance) / (controlParams.maxCameraDistance - controlParams.minCameraDistance);
+        targetZoomFac = zoomFac;
     }
 
     // Update is called once per frame

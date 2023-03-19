@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] string nextLevel;
     public static bool isGameOver;
     public static bool isPaused;
     private static LevelManager instance;
@@ -23,22 +25,36 @@ public class LevelManager : MonoBehaviour
 
     public static void Lose() {
         isGameOver = true;
-        OnGameOver.Invoke(GameOver.Lose);
+        //OnGameOver.Invoke(GameOver.Lose);
+        instance.Invoke("RetryLevel", 2.0f);
     }
 
     public static void Win() {
         isGameOver = true;
-        OnGameOver.Invoke(GameOver.Win);
+        //OnGameOver.Invoke(GameOver.Win);
+        instance.Invoke("NextLevel", 2.0f);
+    }
+
+    public void NextLevel() {
+        if (nextLevel == null || nextLevel.Length == 0) return;
+        SceneManager.LoadScene(nextLevel);
+    }
+
+    public void RetryLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void TogglePause() {
-        isPaused = !isPaused;
-        OnTogglePause.Invoke();
+        //isPaused = !isPaused;
+        if (OnTogglePause != null) {
+            OnTogglePause.Invoke();
+        }
     }
 
     float counter = 0;
     float smoothTime = 0.5f;
     void FixedUpdate() {
+        /*
         if (isGameOver || isPaused) {
             counter += Time.fixedUnscaledDeltaTime / smoothTime;
         } else {
@@ -47,6 +63,7 @@ public class LevelManager : MonoBehaviour
         counter = Mathf.Clamp01(counter);
         Time.timeScale = Mathf.SmoothStep(1, 0, counter);
         Time.fixedDeltaTime = Time.fixedUnscaledDeltaTime * Time.timeScale;
+        */
     }
 
     void OnEnable()

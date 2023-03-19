@@ -7,11 +7,10 @@ using UnityEngine.Events;
 public class Mortal : Killable, Damageable
 {
     [SerializeField] protected Element element;
-    [SerializeField] protected Team _team;
    
-    public int maxHp { get; protected set; }
-    public int hp { get; protected set; }
-    public Team team { get; protected set; }
+    [field: SerializeField] public int maxHp { get; protected set; }
+    public int hp { get; protected set; } = 100;
+    [field: SerializeField] public Team team { get; protected set; }
     
     protected void Start()
     {
