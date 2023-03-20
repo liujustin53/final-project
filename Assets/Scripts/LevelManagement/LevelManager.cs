@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] string nextLevel;
+    [SerializeField] Text gameText;
     public static bool isGameOver;
     public static bool isPaused;
     private static LevelManager instance;
@@ -25,6 +27,7 @@ public class LevelManager : MonoBehaviour
 
     public static void Lose() {
         isGameOver = true;
+        instance.gameText.gameObject.SetActive(true);
         //OnGameOver.Invoke(GameOver.Lose);
         instance.Invoke("RetryLevel", 2.0f);
     }
@@ -32,7 +35,7 @@ public class LevelManager : MonoBehaviour
     public static void Win() {
         isGameOver = true;
         //OnGameOver.Invoke(GameOver.Win);
-        instance.Invoke("NextLevel", 2.0f);
+        instance.Invoke("NextLevel", 0.0f);
     }
 
     public void NextLevel() {

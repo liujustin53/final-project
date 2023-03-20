@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Mortal : Killable, Damageable
 {
     [SerializeField] protected Element element;
+    [SerializeField] protected AudioClip hurtSFX;
    
     [field: SerializeField] public int maxHp { get; protected set; }
     public int hp { get; protected set; } = 100;
@@ -25,6 +26,7 @@ public class Mortal : Killable, Damageable
             realDamage = this.element.GetRealDamage(dmg, damageType);
         }
         this.hp = Mathf.Max(0, hp - realDamage);
+        AudioSource.PlayClipAtPoint(hurtSFX, Camera.main.transform.position);
 
         Damageable.SendDamageEvent(gameObject, dmg, damageType);
 

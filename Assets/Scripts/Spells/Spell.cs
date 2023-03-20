@@ -10,6 +10,7 @@ public class Spell : MonoBehaviour
     [SerializeField] FireMode fireMode;
     [SerializeField] float _cooldown;
     [SerializeField] Spawner spawner;
+    [SerializeField] AudioClip shootSFX;
 
     private bool firing;
     private float _countdown;
@@ -52,6 +53,10 @@ public class Spell : MonoBehaviour
 
     private void Fire() {
         spawner.Fire();
+        if(shootSFX != null)
+        {
+            AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
+        }
         _countdown = _cooldown;
     }
 

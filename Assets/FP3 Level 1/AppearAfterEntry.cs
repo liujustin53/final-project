@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AppearAfterEntry : MonoBehaviour
 {
+    [SerializeField] GameObject boss;
     ToggleActive toggle;
     bool triggered = false;
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class AppearAfterEntry : MonoBehaviour
         {
             GetComponent<ToggleActive>().ActivateObjects();
             triggered = true; // Added to prevent being called after first entry
+            boss.SetActive(true);
         }
     }
 }
