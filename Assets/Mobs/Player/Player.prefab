@@ -1459,12 +1459,17 @@ GameObject:
   m_Component:
   - component: {fileID: 1017288542213792565}
   - component: {fileID: 1017288542204566463}
+  - component: {fileID: 4081143139964389047}
   - component: {fileID: 1017288542213935060}
-  - component: {fileID: 1017288542213935061}
+  - component: {fileID: 230061648164865777}
   - component: {fileID: 1017288542213935063}
+  - component: {fileID: 1801146415649543676}
   - component: {fileID: 657732396}
   - component: {fileID: 657732397}
   - component: {fileID: 657732398}
+  - component: {fileID: 657732399}
+  - component: {fileID: 657732400}
+  - component: {fileID: 657732401}
   m_Layer: 0
   m_Name: SF_Character_Elf_01
   m_TagString: Player
@@ -1526,7 +1531,6 @@ Transform:
   - {fileID: 1017288542213890265}
   - {fileID: 1017288542213881195}
   - {fileID: 1017288542213793879}
-  - {fileID: 2023627284118973745}
   m_Father: {fileID: 5097028562321163179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1543,13 +1547,29 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 083f0b1728d80d8d3b4aeb26c5329622, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!54 &4081143139964389047
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017288542213985679}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!136 &1017288542213935060
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1564,24 +1584,23 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!143 &1017288542213935061
-CharacterController:
+--- !u!114 &230061648164865777
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017288542213985679}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2.84
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49f077994ca65e03bd1469d74d196cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementParams: {fileID: 11400000, guid: 9de1ccaa8313cc5b99442f71005739e8, type: 2}
+  rideHeight: 0.25
+  stickyLength: 0.15
+  TargetRotation: {x: 0, y: 0, z: 0, w: 1}
+  Movement: {x: 0, y: 0}
 --- !u!114 &1017288542213935063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1594,7 +1613,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bb6045379f114c192144a73ddfd181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementParams: {fileID: 11400000, guid: 9de1ccaa8313cc5b99442f71005739e8, type: 2}
+--- !u!114 &1801146415649543676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017288542213985679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f407e5c78511ce98eb67651a0d499cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &657732396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1624,8 +1654,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  _cooldown: 2
+  _cooldown: 0.25
   spawner: {fileID: 657732396}
+  shootSFX: {fileID: 8300000, guid: 27ff5a5ce7a66ac4ca733705b86f73ae, type: 3}
 --- !u!114 &657732398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1639,6 +1670,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryAttack: {fileID: 657732397}
+--- !u!114 &657732399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017288542213985679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c70e4b992497b12bfd617c7b5226e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooler: {fileID: 0}
+  element: {fileID: 11400000, guid: 7671f6b001c51365b8887e0f4d948ec4, type: 2}
+  hurtSFX: {fileID: 8300000, guid: 14d6864a2e417fe4eae21425c8256c20, type: 3}
+  <maxHp>k__BackingField: 100
+  <team>k__BackingField: {fileID: 11400000, guid: d58c3ad27e66f7249a9fb892132202ea, type: 2}
+--- !u!114 &657732400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017288542213985679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad38dcb24e50661138bff9c4a12b809b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 630200118}
+--- !u!114 &657732401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017288542213985679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016f581177456efbe84376b466d4044d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseSFX: {fileID: 8300000, guid: 89d2dcd6ca385504089103f8419012d5, type: 3}
 --- !u!1 &1017288542213985849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5423,6 +5497,7 @@ Transform:
   - {fileID: 1017288542213792565}
   - {fileID: 2023627285553869385}
   - {fileID: 2023627284852761957}
+  - {fileID: 2023627284118973745}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5455,8 +5530,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1017288542213792565}
-  m_RootOrder: 42
+  m_Father: {fileID: 5097028562321163179}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2023627284118973744
 MonoBehaviour:

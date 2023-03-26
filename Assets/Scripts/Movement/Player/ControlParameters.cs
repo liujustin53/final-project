@@ -3,31 +3,33 @@ using UnityEngine;
 
 /// Globally adjusts player control settings.
 [CreateAssetMenu(menuName = "Game/Controls/Control Parameters")]
-public class ControlParameters : ScriptableObject
+public class ControlParameters : SingletonScriptableObject<ControlParameters>
 {
-    public static ControlParameters instance;
-    public float lookSensitivity = 1;
-    public bool invertX;
-    public bool invertY;
+    public static float lookSensitivity => instance._lookSensitivity;
+    public static bool invertX => instance._invertX;
+    public static bool invertY => instance._invertY;
 
-    public float zoomSensitivity = 0.25f;
-    public float zoomSmoothing = 0.5f;
-    public float minCameraDistance = 1.5f;
-    public float maxCameraDistance = 10f;
+    public static float zoomSensitivity => instance._zoomSensitivity;
+    public static float zoomSmoothing => instance._zoomSmoothing;
+    public static float minCameraDistance => instance._minCameraDistance;
+    public static float maxCameraDistance => instance._maxCameraDistance;
 
-    // The Player can start jumping for this long after leaving the ground
-    public float coyoteTime = 0.2f;
+    /// <summary> The Player can start jumping for this long after leaving the ground </summary>
+    public static float coyoteTime => instance._coyoteTime;
 
-    // The Player will try to jump for this long after first pressing the button
-    public float jumpBuffer = 0.2f;
+    /// <summary> The Player will try to jump for this long after first pressing the button </summary>
+    public static float jumpBuffer => instance._jumpBuffer;
 
-    void Awake() {
-        instance = this;
-    }
 
-#if UNITY_EDITOR
-    void OnValidate() {
-        Awake();
-    }
-#endif
+
+    [SerializeField] private float _lookSensitivity = 1;
+    [SerializeField] private bool _invertX;
+    [SerializeField] private bool _invertY;
+
+    [SerializeField] private float _zoomSensitivity = 0.25f;
+    [SerializeField] private float _zoomSmoothing = 0.5f;
+    [SerializeField] private float _minCameraDistance = 1.5f;
+    [SerializeField] private float _maxCameraDistance = 10f;
+    [SerializeField] private float _coyoteTime = 0.2f;
+    [SerializeField] private float _jumpBuffer = 0.2f;
 }

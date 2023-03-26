@@ -1,22 +1,26 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
     [HideInInspector] public float eulerY => look.y;
-    private ControlParameters controlParameters;
     private Vector3 look;
+    private Transform player;
+    private Vector3 offset;
+    
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        controlParameters = ControlParameters.instance;
+        if (player == null) {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        offset = transform.position - player.position;
     }
 
     public void Look() {
-        Vector2 mouseLook = InputManager.deltaLook * controlParameters.lookSensitivity;
-        look.y += mouseLook.x * (controlParameters.invertX ? -1 : 1);
-        look.x += mouseLook.y * (controlParameters.invertY ? -1 : 1);
+        Vector2 mouseLook = InputManager.deltaLook * ControlParameters.lookSensitivity;
+        look.y += mouseLook.x * (ControlParameters.invertX ? -1 : 1);
+        look.x += mouseLook.y * (ControlParameters.invertY ? -1 : 1);
         look.x = Mathf.Clamp(look.x, -90, 90);
     }
 
@@ -24,5 +28,6 @@ public class MouseLook : MonoBehaviour
     void LateUpdate() {
         Look();
         transform.rotation = Quaternion.Euler(look);
+        transform.position = player.position + offset;
     }
 }

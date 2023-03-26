@@ -4,10 +4,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Movement/Movement Parameters")]
 public class MovementParams : ScriptableObject
 {
-    public float speed = 5;
+    public float maxSpeed = 5;
     public float jumpHeight = 1;
-    public float airControl = 0.5f;
-    public float groundControl = 0.99f;
 
-    public float turnControl = 0.95f;
+    public float acceleration = 200;
+
+    public float maxAccelForce = 150;
+    public float airMaxAccelForce = 10;
+
+    public float angularAcceleration = 100;
+    public float angularDampening = 10;
+
+    public float suspensionStrength = 100;
+    public float suspensionDampening = 10;
 }
