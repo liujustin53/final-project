@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 5039573178173771126}
   m_Layer: 0
   m_Name: Skeleton King
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,11 +173,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5039573178166334184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4962c361dadb68d80502892ab35cbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 9684fe0e27f33e84cab661aa8731caaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireMode: 0
-  _cooldown: 1
+  fireMode: 1
+  _cooldown: 0.5
+  spellSFX: {fileID: 0}
   spawner: {fileID: 5039573178173771124}
 --- !u!114 &5039573178173771147
 MonoBehaviour:
@@ -226,7 +227,7 @@ MonoBehaviour:
   portal: {fileID: 0}
   spawnPoint: {fileID: 2078154473189021712}
   rotationAnlge: 45
-  winSFX: {fileID: 0}
+  winSFX: {fileID: 8300000, guid: b65f652da830fa44184489dbcdbbfeda, type: 3}
 --- !u!1 &5039573178166334190
 GameObject:
   m_ObjectHideFlags: 0

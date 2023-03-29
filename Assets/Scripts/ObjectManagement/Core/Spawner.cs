@@ -15,8 +15,14 @@ public class Spawner: MonoBehaviour
 
     protected Killable[] Spawn(Vector3 pos, Quaternion rot = new Quaternion()) {
         if (usePooler) {
+            if (pooler == null) {
+                throw new NullReferenceException("Pooler is null");
+            }
             Killable killable = pooler.Spawn(pos, rot);
             return new Killable[] {killable};
+        }
+        if (prefab == null) {
+            throw new NullReferenceException("Prefab is null");
         }
         return new Killable[] { Instantiate<Killable>(prefab, pos, rot) };
     }

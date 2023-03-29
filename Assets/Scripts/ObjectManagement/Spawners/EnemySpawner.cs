@@ -22,16 +22,13 @@ public class EnemySpawner : Spawner
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 
     void SpawnEnemies()
     {
         if (!LevelManager.isGameOver)
         {
-            if(transform.childCount < maxEnemies)
+            if (transform.childCount < maxEnemies)
             {
                 Vector3 enemyPosition;
 
@@ -39,12 +36,12 @@ public class EnemySpawner : Spawner
                 enemyPosition.y = transform.position.y;
                 enemyPosition.z = transform.position.z + Random.Range(zMin, zMax);
 
-                GameObject spawnedEnemy = Instantiate(enemyPrefab, enemyPosition, transform.rotation) as GameObject;
+                GameObject spawnedEnemy =
+                    Instantiate(enemyPrefab, enemyPosition, transform.rotation) as GameObject;
 
                 spawnedEnemy.transform.parent = gameObject.transform;
             }
         }
-        
     }
 
     private void OnDrawGizmos()

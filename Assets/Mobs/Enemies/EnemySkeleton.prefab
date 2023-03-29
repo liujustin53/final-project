@@ -2268,10 +2268,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4454917866848070943}
   - component: {fileID: 4454917866857247721}
-  - component: {fileID: 4454917866848070930}
-  - component: {fileID: 4454917866848070929}
   - component: {fileID: 4454917866848070928}
   - component: {fileID: 4454917866848070931}
+  - component: {fileID: 4454917866848070930}
+  - component: {fileID: 4454917866848070929}
   - component: {fileID: 4454917866848070932}
   m_Layer: 0
   m_Name: SF_Character_Undead_Skeleton
@@ -2356,39 +2356,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &4454917866848070930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4454917866847848971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca2cefdb3d224264d854648abda37d68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usePooler: 0
-  pooler: {fileID: 0}
-  prefab: {fileID: 7665476156067417294, guid: ded3b681b61aaca4c8fb885f7b7a3843, type: 3}
-  point: {fileID: 5082692786418620696}
-  spawnCount: 4
-  distanceFromCenter: 1
---- !u!114 &4454917866848070929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4454917866847848971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4962c361dadb68d80502892ab35cbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireMode: 1
-  _cooldown: 1
-  spawner: {fileID: 4454917866848070930}
 --- !u!114 &4454917866848070928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2421,6 +2388,40 @@ MonoBehaviour:
   primaryAttack: {fileID: 4454917866848070929}
   player: {fileID: 0}
   attackDistance: 15
+--- !u!114 &4454917866848070930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4454917866847848971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2cefdb3d224264d854648abda37d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usePooler: 0
+  pooler: {fileID: 0}
+  prefab: {fileID: 7665476156067417294, guid: ded3b681b61aaca4c8fb885f7b7a3843, type: 3}
+  point: {fileID: 5082692786418620696}
+  spawnCount: 4
+  distanceFromCenter: 1
+--- !u!114 &4454917866848070929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4454917866847848971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9684fe0e27f33e84cab661aa8731caaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireMode: 1
+  _cooldown: 0.5
+  spellSFX: {fileID: 0}
+  spawner: {fileID: 4454917866848070930}
 --- !u!136 &4454917866848070932
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5064,7 +5065,7 @@ GameObject:
   - component: {fileID: 5082692784769206682}
   m_Layer: 0
   m_Name: EnemySkeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

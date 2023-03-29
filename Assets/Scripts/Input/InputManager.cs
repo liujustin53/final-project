@@ -22,11 +22,10 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
     public static UnityEvent jumpRelease => instance._jumpRelease;
     public static UnityEvent fire => instance._fire;
     public static UnityEvent fireRelease => instance._fireRelease;
-    public static UnityEvent dodge => instance._dodge;
+    public static UnityEvent blink => instance._blink;
     public static float deltaZoom => instance._deltaZoom;
 
     public static UnityEvent pause => instance._pause;
-
 
     void Awake()
     {
@@ -48,20 +47,24 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.started) {
+        if (context.started)
+        {
             fire.Invoke();
         }
-        if (context.canceled) {
+        if (context.canceled)
+        {
             fireRelease.Invoke();
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started) {
+        if (context.started)
+        {
             jump.Invoke();
         }
-        if (context.canceled) {
+        if (context.canceled)
+        {
             jumpRelease.Invoke();
         }
     }
@@ -73,38 +76,65 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
 
     public void OnEnable()
     {
-        if (playerControls != null) {
+        if (playerControls != null)
+        {
             playerControls.Enable();
         }
     }
 
     public void OnDisable()
     {
-        if (playerControls != null) {
+        if (playerControls != null)
+        {
             playerControls.Disable();
         }
     }
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (context.started) {
+        if (context.started)
+        {
             pause.Invoke();
         }
     }
 
-#if UNITY_EDITOR
-    void OnValidate() {
+    void OnValidate()
+    {
         Awake();
     }
-#endif
 
-    [HideInInspector] public Vector2 _deltaLook;
-    [HideInInspector] public Vector2 _move;
-    [HideInInspector] public UnityEvent _jump;
-    [HideInInspector] public UnityEvent _jumpRelease;
-    [HideInInspector] public UnityEvent _fire;
-    [HideInInspector] public UnityEvent _fireRelease;
-    [HideInInspector] public UnityEvent _dodge;
-    [HideInInspector] public float _deltaZoom;
-    [HideInInspector] public UnityEvent _pause;
+    public void OnBlink(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            blink.Invoke();
+        }
+    }
+
+    [HideInInspector]
+    public Vector2 _deltaLook;
+
+    [HideInInspector]
+    public Vector2 _move;
+
+    [HideInInspector]
+    public UnityEvent _jump;
+
+    [HideInInspector]
+    public UnityEvent _jumpRelease;
+
+    [HideInInspector]
+    public UnityEvent _fire;
+
+    [HideInInspector]
+    public UnityEvent _fireRelease;
+
+    [HideInInspector]
+    public UnityEvent _blink;
+
+    [HideInInspector]
+    public float _deltaZoom;
+
+    [HideInInspector]
+    public UnityEvent _pause;
 }

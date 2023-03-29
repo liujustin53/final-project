@@ -3,7 +3,7 @@ using UnityEngine;
 public class DampedAim : MonoBehaviour
 {
     [SerializeField] float damping = 0;
-    [SerializeField] Transform target;
+    [SerializeField] protected Transform target;
 
     // Update is called once per frame
     void Update()
