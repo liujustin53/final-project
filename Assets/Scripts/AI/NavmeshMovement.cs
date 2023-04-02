@@ -4,21 +4,25 @@ using UnityEngine.AI;
 [RequireComponent(typeof(PhysicsMover))]
 public class NavmeshMovement : MonoBehaviour
 {
-    [SerializeField] float tolerance = 0.5f;
-    [SerializeField] float lookAhead =  1f;
-    [SerializeField] float forwardAttraction = 0.5f;
+    [SerializeField]
+    float tolerance = 0.5f;
+
+    [SerializeField]
+    float lookAhead = 1f;
+
+    [SerializeField]
+    float forwardAttraction = 0.5f;
     public float stoppingDistance = 0f;
 
     Vector3 destination;
     PhysicsMover mover;
     NavMeshPath path;
-    
+
     int segment;
     Vector3 seek;
     Vector3 normalPoint;
     Vector3 predictedPos;
     Vector3 here;
-
 
     Vector3 segmentStart => path.corners[segment];
     Vector3 segmentEnd => path.corners[segment + 1];
@@ -30,36 +34,42 @@ public class NavmeshMovement : MonoBehaviour
         path = new NavMeshPath();
     }
 
-    public void SetDestination(Vector3 dest, float delay = 0) {
-        if (Vector3.Distance(dest, this.destination) < 0.01) return;
+    public void SetDestination(Vector3 dest, float delay = 0)
+    {
+        if (Vector3.Distance(dest, this.destination) < 0.01)
+            return;
         this.destination = dest;
         CancelInvoke("ApplyDestination");
         Invoke("ApplyDestination", delay);
     }
 
-    private void ApplyDestination() {
+    private void ApplyDestination()
+    {
         NavMesh.CalculatePath(transform.position, this.destination, NavMesh.AllAreas, path);
         segment = 0;
     }
 
-    public bool CanSee(Vector3 position) {
+    public bool CanSee(Vector3 position)
+    {
         return !NavMesh.Raycast(transform.position, position, out NavMeshHit hit, NavMesh.AllAreas);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (path.status != NavMeshPathStatus.PathComplete) {
+        if (path.status != NavMeshPathStatus.PathComplete)
+        {
             Debug.Log("Path incomplete");
             return;
         }
         NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 2, NavMesh.AllAreas);
         here = hit.position;
 
-
         if (
-            Vector3.Distance(here, path.corners[^1]) - stoppingDistance < Mathf.Max(mover.DistanceToStop(), tolerance)
-        ) {
+            Vector3.Distance(here, path.corners[^1]) - stoppingDistance
+            < Mathf.Max(mover.DistanceToStop(), tolerance)
+        )
+        {
             mover.Movement = Vector2.zero;
             return;
         }
@@ -69,10 +79,10 @@ public class NavmeshMovement : MonoBehaviour
         MoveToSeek();
     }
 
-    void MoveToSeek() {
-        if (
-            Vector3.Distance(here, seek) <= Mathf.Max(mover.DistanceToStop(), tolerance)
-        ) {
+    void MoveToSeek()
+    {
+        if (Vector3.Distance(here, seek) <= Mathf.Max(mover.DistanceToStop(), tolerance))
+        {
             mover.Movement = Vector2.zero;
             return;
         }
@@ -80,27 +90,28 @@ public class NavmeshMovement : MonoBehaviour
         mover.Movement = new Vector2(seekForce.x, seekForce.z).normalized;
     }
 
-    void UpdateSeek() {
+    void UpdateSeek()
+    {
         Vector3 dest = path.corners[^1];
 
         predictedPos = here;
-        if (mover.velocityXZ.magnitude > 0.25) {
+        if (mover.velocityXZ.magnitude > 0.25)
+        {
             predictedPos += mover.velocity * lookAhead;
         }
 
-        if (DistanceToSegment(here, predictedPos, dest) < tolerance) {
+        if (DistanceToSegment(here, predictedPos, dest) < tolerance)
+        {
             seek = dest;
             return;
         }
 
         normalPoint = GetNormalPoint(segmentStart, segmentEnd, predictedPos);
 
-        if (
-            Vector3.Distance(here, segmentEnd) <= tolerance
-        ) {
+        if (Vector3.Distance(here, segmentEnd) <= tolerance)
+        {
             segment++;
         }
-
 
         seek = predictedPos;
         Vector3 seekNormal = GetNormalPoint(segmentStart, segmentEnd, seek);
@@ -109,11 +120,13 @@ public class NavmeshMovement : MonoBehaviour
         seek = Vector3.MoveTowards(seek, segmentEnd, tolerance + forwardAttraction);
     }
 
-    float DistanceToSegment(Vector3 start, Vector3 end, Vector3 point) {
+    float DistanceToSegment(Vector3 start, Vector3 end, Vector3 point)
+    {
         return Vector3.Distance(point, GetNormalPoint(start, end, point));
     }
 
-    Vector3 GetNormalPoint(Vector3 start, Vector3 end, Vector3 point) {
+    Vector3 GetNormalPoint(Vector3 start, Vector3 end, Vector3 point)
+    {
         Vector3 relativePos = point - start;
         Vector3 relativeEnd = end - start;
         Vector3 segmentDirection = relativeEnd.normalized;
@@ -127,12 +140,15 @@ public class NavmeshMovement : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        if (path == null) return;
-        if (path.status != NavMeshPathStatus.PathComplete) return;
+        if (path == null)
+            return;
+        if (path.status != NavMeshPathStatus.PathComplete)
+            return;
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(seek, 0.2f);
 
-        for (int i = 0; i < path.corners.Length - 1; i++) {
+        for (int i = 0; i < path.corners.Length - 1; i++)
+        {
             Gizmos.color = (i == segment) ? Color.cyan : Color.gray;
             Vector3 start = path.corners[i];
             Vector3 end = path.corners[i + 1];

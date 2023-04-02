@@ -13,13 +13,17 @@ public class SkeletonKingBehavior : MonoBehaviour, KillResponse
     [SerializeField]
     AudioClip winSFX;
 
-    [SerializeField] float targetDistanceToPlayer = 3;
+    [SerializeField]
+    float targetDistanceToPlayer = 3;
 
-    [SerializeField] int pursueHP = 50;
+    [SerializeField]
+    int pursueHP = 50;
     Mortal mortal;
 
     ExtensibleStateMachine stateMachine;
-    [SerializeField] GameObject waypointParent;
+
+    [SerializeField]
+    GameObject waypointParent;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +33,14 @@ public class SkeletonKingBehavior : MonoBehaviour, KillResponse
         Transform player = GameObject.FindGameObjectWithTag("PlayerHitTarget").transform;
         mortal = GetComponent<Mortal>();
 
-        Patrol patrol = new Patrol(gameObject, waypointParent.GetComponentsInChildren<Transform>(), 0.5f);
+        // remove first waypoint, which is the parent
+        var waypointsList = new List<Transform>(
+            waypointParent.GetComponentsInChildren<Transform>()
+        );
+        waypointsList.RemoveAt(0);
+        var waypoints = waypointsList.ToArray();
+
+        Patrol patrol = new Patrol(gameObject, waypoints);
         Pursue pursue = new Pursue(gameObject, player, targetDistanceToPlayer);
 
         stateMachine.AddTransition(patrol, pursue, ShouldPursue);
@@ -37,7 +48,8 @@ public class SkeletonKingBehavior : MonoBehaviour, KillResponse
         stateMachine.SetState(patrol);
     }
 
-    bool ShouldPursue() {
+    bool ShouldPursue()
+    {
         return mortal.hp < pursueHP;
     }
 

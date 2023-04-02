@@ -9,13 +9,12 @@ public class Patrol : ExtensibleStateMachine.State
     Transform[] waypoints;
     int target;
 
-    public Patrol(GameObject gameObject, Transform[] waypoints, float delayAtWaypoint, float tolerance = 1.0f) {
+    public Patrol(GameObject gameObject, Transform[] waypoints, float delayAtWaypoint = 1.0f, float tolerance = 1.5f) {
         this.waypoints = waypoints;
         this.tolerance = tolerance;
         this.gameObject = gameObject;
         this.delayAtWaypoint = delayAtWaypoint;
         this.navigator = gameObject.GetComponent<NavmeshMovement>();
-        
     }
 
     public override void OnEnter() {
@@ -32,12 +31,19 @@ public class Patrol : ExtensibleStateMachine.State
             }
         }
         navigator.SetDestination(waypoints[target].position);
+        navigator.stoppingDistance = 0;
     }
 
     public override void Update()
     {
-        
+        // print current waypoint
+        // Debug.Log("Current waypoint idx: " + target);
+        // Debug.Log("Current waypoint pos: " + waypoints[target].position);
+        Debug.Log("Current waypoint dist: " + Vector3.Distance(gameObject.transform.position, waypoints[target].position));
+
         if (Vector3.Distance(gameObject.transform.position, waypoints[target].position) < tolerance) {
+            Debug.Log("Reached waypoint " + target);
+            Debug.Log("waypoint pos: " + waypoints[target].position);
             target = (target + 1) % waypoints.Length;
             navigator.SetDestination(waypoints[target].position, delayAtWaypoint);
             navigator.stoppingDistance = 0;
