@@ -15,6 +15,7 @@ public class Patrol : ExtensibleStateMachine.State
         this.gameObject = gameObject;
         this.delayAtWaypoint = delayAtWaypoint;
         this.navigator = gameObject.GetComponent<NavmeshMovement>();
+        
     }
 
     public override void OnEnter() {
@@ -35,10 +36,11 @@ public class Patrol : ExtensibleStateMachine.State
 
     public override void Update()
     {
+        
         if (Vector3.Distance(gameObject.transform.position, waypoints[target].position) < tolerance) {
             target = (target + 1) % waypoints.Length;
             navigator.SetDestination(waypoints[target].position, delayAtWaypoint);
-            navigator.stoppingDistance = tolerance;
+            navigator.stoppingDistance = 0;
         }
     }
 }

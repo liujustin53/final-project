@@ -25,7 +25,7 @@ public class GoblinKingBehavior : MonoBehaviour, KillResponse
         Transform player = GameObject.FindGameObjectWithTag("PlayerHitTarget").transform;
         mortal = GetComponent<Mortal>();
 
-        Patrol patrol = new Patrol(gameObject, waypointParent.GetComponentsInChildren<Transform>(), 0.5f);
+        Patrol patrol = new Patrol(gameObject, waypointParent.GetComponentsInChildren<Transform>(), 1f);
         Pursue pursue = new Pursue(gameObject, player, targetDistanceToPlayer);
 
         stateMachine.AddTransition(patrol, pursue, ShouldPursue);
