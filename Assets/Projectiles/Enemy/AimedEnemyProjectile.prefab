@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
+  inAccuracyModifier: {x: 25, y: 25}
 --- !u!114 &7665476156067417294
 MonoBehaviour:
   m_ObjectHideFlags: 0

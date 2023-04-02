@@ -20,6 +20,7 @@ public class HealSpell : Spell
     protected override void Fire()
     {
         player.Heal(healAmount);
-        Instantiate(HealVFX, transform.position, transform.rotation);
+        GameObject spell = Instantiate(HealVFX, transform.position, transform.rotation);
+        spell.transform.SetParent(gameObject.transform);
     }
 }

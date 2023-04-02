@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 8853152615837262817}
   - component: {fileID: 7571558209699692699}
   - component: {fileID: 5961762495603374324}
+  - component: {fileID: 1611647384}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8853152615837262817
 Transform:
@@ -79,6 +80,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portalEffect: {fileID: 2791222554454814380}
   isActive: 0
+--- !u!82 &1611647384
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853152615837262818}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ae9a59a37ed98bf41ab6217bcb90c0a8, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &8853152614221608525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Middle_A_snaps010 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1637329253262713968, guid: 7a51b9b3a781bbe4fbbd410abde52d5e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a51b9b3a781bbe4fbbd410abde52d5e, type: 3}
 --- !u!4 &9176396814020384868 stripped
@@ -155,6 +256,10 @@ PrefabInstance:
     - target: {fileID: 6656563766545143207, guid: 34d3b41854d353c4eaee33bb2666080d, type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656563766545143208, guid: 34d3b41854d353c4eaee33bb2666080d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6656563767236473276, guid: 34d3b41854d353c4eaee33bb2666080d, type: 3}
       propertyPath: LightsModule.enabled
@@ -244,6 +349,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6656563767236473278, guid: 34d3b41854d353c4eaee33bb2666080d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34d3b41854d353c4eaee33bb2666080d, type: 3}
 --- !u!1 &2791222554454814380 stripped
@@ -266,6 +375,10 @@ PrefabInstance:
     - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Bottom_B_snaps010 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6411799054060215062, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_RootOrder
@@ -373,6 +486,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Top_B_snaps010 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
 --- !u!4 &5417158931310194504 stripped
@@ -434,6 +551,10 @@ PrefabInstance:
     - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Top_B_snaps010 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
@@ -497,6 +618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Top_B_snaps010 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
 --- !u!4 &5417158931588469620 stripped
@@ -514,6 +639,10 @@ PrefabInstance:
     - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Bottom_B_snaps010
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6411799054060215062, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_RootOrder
@@ -621,6 +750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Middle_A_snaps010 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1637329253262713968, guid: 7a51b9b3a781bbe4fbbd410abde52d5e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a51b9b3a781bbe4fbbd410abde52d5e, type: 3}
 --- !u!4 &9176396813848413733 stripped
@@ -682,6 +815,10 @@ PrefabInstance:
     - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Top_B_snaps010 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
@@ -745,6 +882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Top_B_snaps010 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
 --- !u!4 &5417158930995039327 stripped
@@ -807,6 +948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Top_B_snaps010 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
 --- !u!4 &5417158930799975248 stripped
@@ -824,6 +969,10 @@ PrefabInstance:
     - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Bottom_B_snaps010 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6411799054060215062, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_RootOrder
@@ -886,6 +1035,10 @@ PrefabInstance:
     - target: {fileID: 2222519433025971196, guid: 7c42e04e79feb36429e870bb74bc6ba7, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Bottom_A_snaps010 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222519433025971196, guid: 7c42e04e79feb36429e870bb74bc6ba7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7293300521812520175, guid: 7c42e04e79feb36429e870bb74bc6ba7, type: 3}
       propertyPath: m_RootOrder
@@ -993,6 +1146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Middle_A_snaps010
       objectReference: {fileID: 0}
+    - target: {fileID: 1637329253262713968, guid: 7a51b9b3a781bbe4fbbd410abde52d5e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a51b9b3a781bbe4fbbd410abde52d5e, type: 3}
 --- !u!4 &9176396815351983976 stripped
@@ -1010,6 +1167,10 @@ PrefabInstance:
     - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Bottom_B_snaps010 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6411799054060215062, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_RootOrder
@@ -1072,6 +1233,10 @@ PrefabInstance:
     - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Bottom_B_snaps010 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328410247939316611, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6411799054060215062, guid: 261e99d1b9b19174a9636c58f76384a9, type: 3}
       propertyPath: m_RootOrder
@@ -1179,6 +1344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Top_B_snaps010
       objectReference: {fileID: 0}
+    - target: {fileID: 9104150017813455774, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f924f2b4f1f1147864af84578a19ad, type: 3}
 --- !u!4 &5417158930308556351 stripped
@@ -1241,6 +1410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillars_Gruff_Middle_A_snaps010 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1637329253262713968, guid: 7a51b9b3a781bbe4fbbd410abde52d5e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a51b9b3a781bbe4fbbd410abde52d5e, type: 3}
 --- !u!4 &9176396814855796327 stripped
@@ -1258,6 +1431,10 @@ PrefabInstance:
     - target: {fileID: 2222519433025971196, guid: 7c42e04e79feb36429e870bb74bc6ba7, type: 3}
       propertyPath: m_Name
       value: Pillars_Gruff_Bottom_A_snaps010
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222519433025971196, guid: 7c42e04e79feb36429e870bb74bc6ba7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7293300521812520175, guid: 7c42e04e79feb36429e870bb74bc6ba7, type: 3}
       propertyPath: m_RootOrder

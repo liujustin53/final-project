@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2078154473189021712}
+  - component: {fileID: 2078154472911396855}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 5039573178166639336}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2078154472911396855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078154473189021713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c6d74753f76e769b958067f95ba589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angularVelocity: {x: 0, y: 45, z: 0}
 --- !u!1 &5039573178166334184
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +61,9 @@ GameObject:
   - component: {fileID: 5039573178173771147}
   - component: {fileID: 5039573178173771127}
   - component: {fileID: 5039573178173771126}
+  - component: {fileID: 6424173080829299998}
+  - component: {fileID: 6424173080829299999}
+  - component: {fileID: 6424173080829300000}
   m_Layer: 0
   m_Name: Skeleton King
   m_TagString: Enemy
@@ -177,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 1
-  _cooldown: 0.5
+  _cooldown: 1
   spellSFX: {fileID: 0}
   spawner: {fileID: 5039573178173771124}
 --- !u!114 &5039573178173771147
@@ -208,9 +225,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3.5
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Center: {x: 0, y: 1.75, z: 0}
 --- !u!114 &5039573178173771126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,9 +242,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magicWall: {fileID: 0}
   portal: {fileID: 0}
-  spawnPoint: {fileID: 2078154473189021712}
-  rotationAnlge: 45
   winSFX: {fileID: 8300000, guid: b65f652da830fa44184489dbcdbbfeda, type: 3}
+  targetDistanceToPlayer: 2
+  pursueHP: 50
+  waypointParent: {fileID: 0}
+--- !u!54 &6424173080829299998
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039573178166334184}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6424173080829299999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039573178166334184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921bbbd7af9b0346dbc903baedafdb70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tolerance: 0.5
+  lookAhead: 1
+  forwardAttraction: 0.5
+  stoppingDistance: 0
+--- !u!114 &6424173080829300000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039573178166334184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49f077994ca65e03bd1469d74d196cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementParams: {fileID: 11400000, guid: 5c719be3d9db49d08942ce4fd0d0f87d, type: 2}
+  rideHeight: 0.25
+  stickyLength: 0.15
+  TargetRotation: {x: 0, y: 0, z: 0, w: 1}
+  Movement: {x: 0, y: 0}
 --- !u!1 &5039573178166334190
 GameObject:
   m_ObjectHideFlags: 0
