@@ -111,7 +111,7 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
     {
         if (context.started)
         {
-            Debug.Log("Heal");
+            heal.Invoke();
         }
     }
 
