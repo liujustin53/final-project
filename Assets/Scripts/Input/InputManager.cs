@@ -23,6 +23,7 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
     public static UnityEvent fire => instance._fire;
     public static UnityEvent fireRelease => instance._fireRelease;
     public static UnityEvent blink => instance._blink;
+    public static UnityEvent heal => instance._heal;
     public static float deltaZoom => instance._deltaZoom;
 
     public static UnityEvent pause => instance._pause;
@@ -98,11 +99,6 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
         }
     }
 
-    void OnValidate()
-    {
-        Awake();
-    }
-
     public void OnBlink(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -110,6 +106,20 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
             blink.Invoke();
         }
     }
+
+    public void OnHeal(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("Heal");
+        }
+    }
+
+    void OnValidate()
+    {
+        Awake();
+    }
+
 
     [HideInInspector]
     public Vector2 _deltaLook;
@@ -131,6 +141,9 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
 
     [HideInInspector]
     public UnityEvent _blink;
+
+    [HideInInspector]
+    public UnityEvent _heal;
 
     [HideInInspector]
     public float _deltaZoom;

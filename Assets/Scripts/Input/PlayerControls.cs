@@ -89,6 +89,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""867c04d6-e68e-44a7-a8e2-f492bcd4edda"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -397,6 +406,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Blink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f931e4f3-b5e1-4724-bda8-65ddfe47722c"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ddf0298-352d-4799-b39b-fa6cb20f234f"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -991,6 +1022,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Blink = m_Player.FindAction("Blink", throwIfNotFound: true);
+        m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1069,6 +1101,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Zoom;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Blink;
+    private readonly InputAction m_Player_Heal;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1080,6 +1113,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Blink => m_Wrapper.m_Player_Blink;
+        public InputAction @Heal => m_Wrapper.m_Player_Heal;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1110,6 +1144,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Blink.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlink;
                 @Blink.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlink;
                 @Blink.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlink;
+                @Heal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeal;
+                @Heal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeal;
+                @Heal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeal;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1135,6 +1172,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Blink.started += instance.OnBlink;
                 @Blink.performed += instance.OnBlink;
                 @Blink.canceled += instance.OnBlink;
+                @Heal.started += instance.OnHeal;
+                @Heal.performed += instance.OnHeal;
+                @Heal.canceled += instance.OnHeal;
             }
         }
     }
@@ -1298,6 +1338,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnZoom(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnBlink(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
