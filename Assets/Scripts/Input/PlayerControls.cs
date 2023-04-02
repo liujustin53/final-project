@@ -98,6 +98,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fireball1"",
+                    ""type"": ""Button"",
+                    ""id"": ""02f5c5fe-a02f-4328-b041-cc90698e3738"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -428,6 +437,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6446cf61-461e-4da8-8861-d3557f50df27"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fireball1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1023,6 +1043,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Blink = m_Player.FindAction("Blink", throwIfNotFound: true);
         m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+        m_Player_Fireball1 = m_Player.FindAction("Fireball1", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1102,6 +1123,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Blink;
     private readonly InputAction m_Player_Heal;
+    private readonly InputAction m_Player_Fireball1;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1114,6 +1136,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Blink => m_Wrapper.m_Player_Blink;
         public InputAction @Heal => m_Wrapper.m_Player_Heal;
+        public InputAction @Fireball1 => m_Wrapper.m_Player_Fireball1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1147,6 +1170,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Heal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeal;
                 @Heal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeal;
                 @Heal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeal;
+                @Fireball1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireball1;
+                @Fireball1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireball1;
+                @Fireball1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireball1;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1175,6 +1201,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
+                @Fireball1.started += instance.OnFireball1;
+                @Fireball1.performed += instance.OnFireball1;
+                @Fireball1.canceled += instance.OnFireball1;
             }
         }
     }
@@ -1339,6 +1368,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnBlink(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
+        void OnFireball1(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

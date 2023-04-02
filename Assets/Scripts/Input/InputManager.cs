@@ -24,6 +24,7 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
     public static UnityEvent fireRelease => instance._fireRelease;
     public static UnityEvent blink => instance._blink;
     public static UnityEvent heal => instance._heal;
+    public static UnityEvent fireball => instance._fireball;
     public static float deltaZoom => instance._deltaZoom;
 
     public static UnityEvent pause => instance._pause;
@@ -120,6 +121,14 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
         Awake();
     }
 
+    public void OnFireball1(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            fireball.Invoke();
+        }
+    }
+
     [HideInInspector]
     public Vector2 _deltaLook;
 
@@ -149,4 +158,7 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
 
     [HideInInspector]
     public UnityEvent _pause;
+
+    [HideInInspector]
+    public UnityEvent _fireball;
 }

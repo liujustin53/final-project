@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Fireball1",
+                    "type": "Button",
+                    "id": "02f5c5fe-a02f-4328-b041-cc90698e3738",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -406,6 +415,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6446cf61-461e-4da8-8861-d3557f50df27",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Fireball1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

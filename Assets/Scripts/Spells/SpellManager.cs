@@ -12,6 +12,9 @@ public class SpellManager : MonoBehaviour
     [SerializeField]
     private Spell healSpell;
 
+    [SerializeField]
+    private Spell fireBallSpell;
+
     void PrimaryInvoke()
     {
         primaryAttack.StartCast();
@@ -32,12 +35,18 @@ public class SpellManager : MonoBehaviour
         healSpell.StartCast();
     }
 
+    void FireballInvoke()
+    {
+        fireBallSpell.StartCast();
+    }
+
     void OnEnable()
     {
         InputManager.fire.AddListener(this.PrimaryInvoke);
         InputManager.fireRelease.AddListener(this.PrimaryCancel);
         InputManager.blink.AddListener(this.BlinkInvoke);
         InputManager.heal.AddListener(this.HealInvoke);
+        InputManager.fireball.AddListener(this.FireballInvoke);
     }
 
     void OnDisable()
@@ -46,5 +55,6 @@ public class SpellManager : MonoBehaviour
         InputManager.fireRelease.RemoveListener(this.PrimaryCancel);
         InputManager.blink.RemoveListener(this.BlinkInvoke);
         InputManager.heal.RemoveListener(this.HealInvoke);
+        InputManager.fireball.RemoveListener(this.FireballInvoke);
     }
 }

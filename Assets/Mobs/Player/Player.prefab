@@ -1503,6 +1503,8 @@ GameObject:
   - component: {fileID: 657732399}
   - component: {fileID: 657732400}
   - component: {fileID: 657732401}
+  - component: {fileID: 2649342167445940436}
+  - component: {fileID: 2958615314550694680}
   m_Layer: 0
   m_Name: SF_Character_Elf_01
   m_TagString: Player
@@ -1674,6 +1676,7 @@ MonoBehaviour:
   primaryAttack: {fileID: 657732397}
   blinkSpell: {fileID: 3057207386854279916}
   healSpell: {fileID: 420664596800948669}
+  fireBallSpell: {fileID: 2649342167445940436}
 --- !u!114 &657732397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1720,8 +1723,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireMode: 0
   _cooldown: 1
-  spellSFX: {fileID: 0}
+  spellSFX: {fileID: 8300000, guid: c04d5a27fb7e5dd40b7c348b4331829c, type: 3}
   blinkDistance: 10
+  BlinkVFX: {fileID: 6174442321101027559, guid: 1a96e98caf74c0d4ba3fc62f77f6f83e, type: 3}
 --- !u!114 &420664596800948669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,8 +1740,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireMode: 0
   _cooldown: 1
-  spellSFX: {fileID: 0}
+  spellSFX: {fileID: 8300000, guid: b60cc7dbf033b6b4f8a566ecdfaf12dc, type: 3}
   healAmount: 10
+  HealVFX: {fileID: 8328823307804868519, guid: 7be817df917956744a1fc9898882ce4a, type: 3}
 --- !u!114 &657732399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,6 +1786,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loseSFX: {fileID: 8300000, guid: 89d2dcd6ca385504089103f8419012d5, type: 3}
+--- !u!114 &2649342167445940436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017288542213985679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9684fe0e27f33e84cab661aa8731caaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireMode: 0
+  _cooldown: 4
+  spellSFX: {fileID: 8300000, guid: c13c86c4c1f6e9a40b85c1ca1ee157a6, type: 3}
+  spawner: {fileID: 2958615314550694680}
+--- !u!114 &2958615314550694680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017288542213985679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ed2a2955cf7f76381cb852620de06c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usePooler: 0
+  pooler: {fileID: 0}
+  prefab: {fileID: 2446050470578459077, guid: fbef3f18b3e3b224ebaab6ba682f10c5, type: 3}
+  point: {fileID: 1827675995}
 --- !u!1 &1017288542213985849
 GameObject:
   m_ObjectHideFlags: 0
