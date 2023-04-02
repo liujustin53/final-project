@@ -5,6 +5,9 @@ public class BlinkSpell : Spell
     [SerializeField]
     private float blinkDistance = 10.0f;
 
+    [SerializeField]
+    private GameObject BlinkVFX;
+
     private PhysicsMover mover;
     private float playerRadius;
 
@@ -16,6 +19,7 @@ public class BlinkSpell : Spell
 
     protected override void Fire()
     {
+        Instantiate(BlinkVFX, transform.position, transform.rotation);
         Vector2 direction = mover.Movement.normalized;
         Vector3 direction3D = new Vector3(direction.x, 0, direction.y);
         // raycast to see if we can blink that far
@@ -36,5 +40,6 @@ public class BlinkSpell : Spell
             // if we didn't hit anything, blink the full distance
             transform.position += direction3D * blinkDistance;
         }
+        Instantiate(BlinkVFX, transform.position, transform.rotation);
     }
 }
