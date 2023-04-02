@@ -1673,6 +1673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryAttack: {fileID: 657732397}
   blinkSpell: {fileID: 3057207386854279916}
+  healSpell: {fileID: 420664596800948669}
 --- !u!114 &657732397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1734,7 +1735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  _cooldown: 0
+  _cooldown: 1
   spellSFX: {fileID: 0}
   healAmount: 10
 --- !u!114 &657732399

@@ -601,6 +601,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 657732398, guid: d3789411254e451e48dbbc1fd9fc94e7, type: 3}
+      propertyPath: healSpell
+      value: 
+      objectReference: {fileID: 1771148043}
     - target: {fileID: 2061207533, guid: d3789411254e451e48dbbc1fd9fc94e7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -608,6 +612,10 @@ PrefabInstance:
     - target: {fileID: 2061207533, guid: d3789411254e451e48dbbc1fd9fc94e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 420664596800948669, guid: d3789411254e451e48dbbc1fd9fc94e7, type: 3}
+      propertyPath: _cooldown
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1476681869449860204, guid: d3789411254e451e48dbbc1fd9fc94e7, type: 3}
       propertyPath: m_Name
@@ -1121,6 +1129,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 26.374, z: 0}
+--- !u!114 &1771148043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 420664596800948669, guid: d3789411254e451e48dbbc1fd9fc94e7, type: 3}
+  m_PrefabInstance: {fileID: 600838950}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e667290f9cf311449399e03fe4fa59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1819094685
 GameObject:
   m_ObjectHideFlags: 0
