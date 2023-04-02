@@ -19,7 +19,14 @@ public class BlinkSpell : Spell
         Vector2 direction = mover.Movement.normalized;
         Vector3 direction3D = new Vector3(direction.x, 0, direction.y);
         // raycast to see if we can blink that far
-        if (Physics.Raycast(transform.position + Vector3.up, direction3D, out RaycastHit hit, blinkDistance))
+        if (
+            Physics.Raycast(
+                transform.position + Vector3.up,
+                direction3D,
+                out RaycastHit hit,
+                blinkDistance
+            )
+        )
         {
             // if we hit something, blink to the point just before the hit
             transform.position = hit.point - direction3D * playerRadius - Vector3.up;

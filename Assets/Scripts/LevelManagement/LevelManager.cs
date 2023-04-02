@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] string nextLevel;
-    [SerializeField] Text gameText;
+    [SerializeField]
+    string nextLevel;
+
+    [SerializeField]
+    Text gameText;
     public static bool isGameOver;
     public static bool isPaused;
     private static LevelManager instance;
@@ -25,38 +28,47 @@ public class LevelManager : MonoBehaviour
         isPaused = false;
     }
 
-    public static void Lose() {
+    public static void Lose()
+    {
         isGameOver = true;
         instance.gameText.gameObject.SetActive(true);
         //OnGameOver.Invoke(GameOver.Lose);
         instance.Invoke("RetryLevel", 2.0f);
     }
 
-    public static void Win() {
+    public static void Win()
+    {
         isGameOver = true;
         //OnGameOver.Invoke(GameOver.Win);
         instance.Invoke("NextLevel", 0.0f);
     }
 
-    public void NextLevel() {
-        if (nextLevel == null || nextLevel.Length == 0) return;
+    public void NextLevel()
+    {
+        if (nextLevel == null || nextLevel.Length == 0)
+            return;
         SceneManager.LoadScene(nextLevel);
     }
 
-    public void RetryLevel() {
+    public void RetryLevel()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void TogglePause() {
+    private void TogglePause()
+    {
         //isPaused = !isPaused;
-        if (OnTogglePause != null) {
+        if (OnTogglePause != null)
+        {
             OnTogglePause.Invoke();
         }
     }
 
     float counter = 0;
     float smoothTime = 0.5f;
-    void FixedUpdate() {
+
+    void FixedUpdate()
+    {
         /*
         if (isGameOver || isPaused) {
             counter += Time.fixedUnscaledDeltaTime / smoothTime;

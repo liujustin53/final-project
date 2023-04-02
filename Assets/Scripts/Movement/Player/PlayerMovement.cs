@@ -14,11 +14,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Callback for pressing the "Jump" control
-    public void OnJump() {
+    public void OnJump()
+    {
         jumpCountdown = ControlParameters.jumpBuffer;
     }
+
     // Callback for releasing the "Jump" control
-    public void OnJumpRelease() {
+    public void OnJumpRelease()
+    {
         coyoteCountdown = 0;
         mover.CancelJump();
     }
@@ -31,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
         TryJump();
     }
 
-    void Move() {
+    void Move()
+    {
         Transform view = Camera.main.transform;
 
         Vector2 right = new Vector2(view.right.x, view.right.z).normalized;
@@ -40,21 +44,26 @@ public class PlayerMovement : MonoBehaviour
         mover.Movement = InputManager.move.x * right + InputManager.move.y * forward;
     }
 
-
     // Rotate towards the main camera's forward direction (about the y axis)
-    void FaceForward() {
-        if ( mover.velocityXZ.magnitude < 0.1 ) return;
-        if ( !mover.isGrounded ) return;
-        
+    void FaceForward()
+    {
+        if (mover.velocityXZ.magnitude < 0.1)
+            return;
+        if (!mover.isGrounded)
+            return;
+
         float target = Mathf.Atan2(mover.velocityXZ.x, mover.velocityXZ.y) * Mathf.Rad2Deg;
         mover.TargetRotation = Quaternion.Euler(0, target, 0);
     }
 
-    void TryJump() {
-        if (mover.isGrounded) {
+    void TryJump()
+    {
+        if (mover.isGrounded)
+        {
             coyoteCountdown = ControlParameters.coyoteTime;
         }
-        if (jumpCountdown > 0 && coyoteCountdown > 0) {
+        if (jumpCountdown > 0 && coyoteCountdown > 0)
+        {
             mover.Jump();
         }
         coyoteCountdown -= Time.unscaledDeltaTime;
@@ -62,15 +71,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Helpers for damped movement
-    float DampedFac(float control) {
+    float DampedFac(float control)
+    {
         return 1 - Mathf.Pow(1 - control, 4 * Time.deltaTime);
     }
-    Vector3 DampedControl(Vector3 current, Vector3 target, float control) {
-        return Vector3.Lerp(
-            current, 
-            target, 
-            DampedFac(control)
-        );
+
+    Vector3 DampedControl(Vector3 current, Vector3 target, float control)
+    {
+        return Vector3.Lerp(current, target, DampedFac(control));
     }
 
     // Subscribe / unsubscribe to jump callbacks

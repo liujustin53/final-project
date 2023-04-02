@@ -12,7 +12,7 @@ public class HealSpell : Spell
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Mortal>(); 
+        player = GetComponent<Mortal>();
     }
 
     protected override void Fire()

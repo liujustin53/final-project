@@ -30,12 +30,15 @@ public class DamageFlash : MonoBehaviour, DamageListener
     // Update is called once per frame
     void Update()
     {
-        if (countdown <= 0) {
+        if (countdown <= 0)
+        {
             phase = 0;
-        } else {
+        }
+        else
+        {
             phase = (phase + Time.unscaledDeltaTime * frequency) % 1.0f;
         }
-        
+
         renderer.GetPropertyBlock(propBlock);
         float fac = (phase < 0.5f && countdown > 0) ? 1.0f : 0.0f;
         propBlock.SetColor("_EmissionColor", Color.Lerp(initialEmission, flickerColor, fac));

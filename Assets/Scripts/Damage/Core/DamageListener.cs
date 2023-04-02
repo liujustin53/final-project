@@ -1,3 +1,4 @@
-public interface DamageListener {
+public interface DamageListener
+{
     void OnDamage(int dmg, Element element);
 }

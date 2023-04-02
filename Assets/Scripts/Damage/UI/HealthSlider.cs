@@ -3,8 +3,10 @@ using UnityEngine.UI;
 
 public class HealthSlider : MonoBehaviour, DamageListener, HealListener
 {
-    [SerializeField] protected Slider healthSlider;
+    [SerializeField]
+    protected Slider healthSlider;
     private Mortal mortal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,8 @@ public class HealthSlider : MonoBehaviour, DamageListener, HealListener
         this.healthSlider.value = this.mortal.hp;
     }
 
-    public void OnDamage(int dmg, Element element) {
+    public void OnDamage(int dmg, Element element)
+    {
         this.healthSlider.value = this.mortal.hp;
     }
 

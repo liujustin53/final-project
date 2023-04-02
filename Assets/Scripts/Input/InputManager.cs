@@ -120,7 +120,6 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
         Awake();
     }
 
-
     [HideInInspector]
     public Vector2 _deltaLook;
 

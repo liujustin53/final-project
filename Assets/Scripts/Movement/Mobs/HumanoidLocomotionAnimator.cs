@@ -10,7 +10,9 @@ public class HumanoidLocomotionAnimator : MonoBehaviour, PhysicsMover.JumpListen
         animator = GetComponent<Animator>();
         mover = GetComponent<PhysicsMover>();
     }
-    public void OnJump() {
+
+    public void OnJump()
+    {
         animator.SetTrigger("Jump");
     }
 

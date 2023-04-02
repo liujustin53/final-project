@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class LoseOnDie : MonoBehaviour, KillResponse
 {
-    [SerializeField] AudioClip loseSFX;
+    [SerializeField]
+    AudioClip loseSFX;
+
     public void OnKilled()
     {
         AudioSource.PlayClipAtPoint(loseSFX, Camera.main.transform.position);

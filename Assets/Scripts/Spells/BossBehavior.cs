@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class BossBehavior : MonoBehaviour, KillResponse
 {
-    [SerializeField] ToggleActive magicWall;
-    [SerializeField] PortalEntrance portal;
-    [SerializeField] Transform spawnPoint;
-    [SerializeField] float rotationAnlge = 45;
-    [SerializeField] AudioClip winSFX;
+    [SerializeField]
+    ToggleActive magicWall;
+
+    [SerializeField]
+    PortalEntrance portal;
+
+    [SerializeField]
+    Transform spawnPoint;
+
+    [SerializeField]
+    float rotationAnlge = 45;
+
+    [SerializeField]
+    AudioClip winSFX;
 
     // Start is called before the first frame update
     void Start()

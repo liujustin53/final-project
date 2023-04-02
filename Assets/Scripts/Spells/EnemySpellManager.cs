@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class EnemySpellManager : MonoBehaviour
 {
-    [SerializeField] private Spell primaryAttack;
-    [SerializeField] private GameObject player;
-    [SerializeField] private float attackDistance = 15;
+    [SerializeField]
+    private Spell primaryAttack;
+
+    [SerializeField]
+    private GameObject player;
+
+    [SerializeField]
+    private float attackDistance = 15;
+
     void PrimaryInvoke()
     {
         primaryAttack.StartCast();
@@ -27,7 +33,10 @@ public class EnemySpellManager : MonoBehaviour
     {
         // Implement with raycasting later
 
-        if(player != null && Vector3.Distance(transform.position, player.transform.position) <= attackDistance)
+        if (
+            player != null
+            && Vector3.Distance(transform.position, player.transform.position) <= attackDistance
+        )
         {
             PrimaryInvoke();
         }
@@ -36,7 +45,6 @@ public class EnemySpellManager : MonoBehaviour
             PrimaryCancel();
         }
     }
-
 
     private void OnDisable()
     {

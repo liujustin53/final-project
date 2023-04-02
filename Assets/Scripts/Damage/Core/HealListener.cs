@@ -1,3 +1,4 @@
-public interface HealListener {
+public interface HealListener
+{
     void OnHeal(int hp);
 }

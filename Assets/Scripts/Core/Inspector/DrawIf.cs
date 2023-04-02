@@ -7,7 +7,8 @@ public class DrawIf : PropertyAttribute
     public string toggleName { get; private set; }
     public bool invert { get; private set; }
 
-    public DrawIf(string toggleName, bool inverted) {
+    public DrawIf(string toggleName, bool inverted)
+    {
         this.toggleName = toggleName;
         this.invert = inverted;
     }

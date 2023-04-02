@@ -11,16 +11,20 @@ public class Element : ScriptableObject
     [ColorUsage(false, true)]
     public Color damageColor = Color.white;
 
-    public bool In(Element[] elements) {
+    public bool In(Element[] elements)
+    {
         return Array.Exists<Element>(elements, element => element == this);
     }
 
     // Calculate the actual damage of an attack, taking resistances and vulnerabilities into account
-    public int GetRealDamage(int dmg, Element type) {
-        if (type.In(this.vulnerabilities)) {
+    public int GetRealDamage(int dmg, Element type)
+    {
+        if (type.In(this.vulnerabilities))
+        {
             return dmg * 2;
         }
-        if (type.In(this.resistances)) {
+        if (type.In(this.resistances))
+        {
             return dmg / 2;
         }
         return dmg;

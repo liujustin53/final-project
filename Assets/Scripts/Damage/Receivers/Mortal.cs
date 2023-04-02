@@ -1,18 +1,23 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-
 /// Your standard mortal being. It has limited Health Points, and can take damage and receive healing.
 [DisallowMultipleComponent]
 public class Mortal : Killable, Damageable
 {
-    [SerializeField] protected Element element;
-    [SerializeField] protected AudioClip hurtSFX;
-   
-    [field: SerializeField] public int maxHp { get; protected set; }
+    [SerializeField]
+    protected Element element;
+
+    [SerializeField]
+    protected AudioClip hurtSFX;
+
+    [field: SerializeField]
+    public int maxHp { get; protected set; }
     public int hp { get; protected set; } = 100;
-    [field: SerializeField] public Team team { get; protected set; }
-    
+
+    [field: SerializeField]
+    public Team team { get; protected set; }
+
     protected void Start()
     {
         this.hp = this.maxHp;
@@ -22,7 +27,8 @@ public class Mortal : Killable, Damageable
     {
         Debug.Assert(dmg >= 0);
         int realDamage = dmg;
-        if (this.element != null) {
+        if (this.element != null)
+        {
             realDamage = this.element.GetRealDamage(dmg, damageType);
         }
         this.hp = Mathf.Max(0, hp - realDamage);
@@ -30,7 +36,8 @@ public class Mortal : Killable, Damageable
 
         Damageable.SendDamageEvent(gameObject, dmg, damageType);
 
-        if (this.hp == 0) {
+        if (this.hp == 0)
+        {
             Kill();
         }
     }

@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // Gives the attached GameObject more advanced death behaviour
-public class Killable: MonoBehaviour
+public class Killable : MonoBehaviour
 {
-    [HideInInspector] public Pooler pooler;
+    [HideInInspector]
+    public Pooler pooler;
 
     private bool alreadyKilled = false;
 
@@ -15,16 +16,21 @@ public class Killable: MonoBehaviour
 
     /// <summary> Kill or Destroy the given GameObject; </summary>
     /// <remarks> behaves similarly to Destroy </remarks>
-    public static void Kill(GameObject toKill, float delay = 0) {
-        if (toKill.TryGetComponent<Killable>(out Killable killable)) {
+    public static void Kill(GameObject toKill, float delay = 0)
+    {
+        if (toKill.TryGetComponent<Killable>(out Killable killable))
+        {
             killable.Kill(delay);
-        } else {
+        }
+        else
+        {
             Destroy(toKill, delay);
         }
     }
 
     /// <summary> Kills this </summary>
-    public void Kill(float delay = 0) {
+    public void Kill(float delay = 0)
+    {
         Invoke("_Kill", delay);
     }
 
@@ -34,26 +40,37 @@ public class Killable: MonoBehaviour
     /// <returns>
     /// The number of seconds to delay the actual destruction of the object.
     /// </returns>
-    public virtual float BeforeKill() { return 0.0f; }
+    public virtual float BeforeKill()
+    {
+        return 0.0f;
+    }
 
-    private void _Kill() {
-        if (alreadyKilled) return;
+    private void _Kill()
+    {
+        if (alreadyKilled)
+            return;
         alreadyKilled = true;
-        foreach (KillResponse response in GetComponents<KillResponse>()) {
+        foreach (KillResponse response in GetComponents<KillResponse>())
+        {
             response.OnKilled();
         }
         Invoke("_Destroy", BeforeKill());
     }
 
-    private void _Destroy() {
-        if (pooler != null) {
+    private void _Destroy()
+    {
+        if (pooler != null)
+        {
             pooler.Release(this);
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
 
-    protected virtual void OnDisable() {
+    protected virtual void OnDisable()
+    {
         CancelInvoke();
     }
 }

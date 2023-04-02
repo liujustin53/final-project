@@ -6,11 +6,15 @@ public class ScrollZoom : MonoBehaviour
 
     private float zoomFac;
     private float targetZoomFac;
+
     // Start is called before the first frame update
     void Start()
     {
-        virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.Cinemachine3rdPersonFollow>();
-        zoomFac = (virtualCamera.CameraDistance - ControlParameters.minCameraDistance) / (ControlParameters.maxCameraDistance - ControlParameters.minCameraDistance);
+        virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCamera>()
+            .GetCinemachineComponent<Cinemachine.Cinemachine3rdPersonFollow>();
+        zoomFac =
+            (virtualCamera.CameraDistance - ControlParameters.minCameraDistance)
+            / (ControlParameters.maxCameraDistance - ControlParameters.minCameraDistance);
         targetZoomFac = zoomFac;
     }
 
@@ -20,11 +24,16 @@ public class ScrollZoom : MonoBehaviour
         targetZoomFac += InputManager.deltaZoom * ControlParameters.zoomSensitivity;
         targetZoomFac = Mathf.Clamp01(targetZoomFac);
         zoomFac = Mathf.Lerp(zoomFac, targetZoomFac, DampedFac(ControlParameters.zoomSmoothing));
-        
-        virtualCamera.CameraDistance = Mathf.SmoothStep(ControlParameters.minCameraDistance, ControlParameters.maxCameraDistance, zoomFac);
+
+        virtualCamera.CameraDistance = Mathf.SmoothStep(
+            ControlParameters.minCameraDistance,
+            ControlParameters.maxCameraDistance,
+            zoomFac
+        );
     }
 
-    float DampedFac(float smoothing) {
+    float DampedFac(float smoothing)
+    {
         return 1 - Mathf.Exp(-Time.deltaTime / smoothing);
     }
 }

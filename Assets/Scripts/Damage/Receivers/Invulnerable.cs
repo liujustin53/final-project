@@ -5,7 +5,8 @@ using UnityEngine.Events;
 [DisallowMultipleComponent]
 public class Invulnerable : MonoBehaviour, Damageable
 {
-    [field: SerializeField] public Team team { get; protected set; }
+    [field: SerializeField]
+    public Team team { get; protected set; }
 
     public virtual void Damage(int dmg, Element damageType)
     {

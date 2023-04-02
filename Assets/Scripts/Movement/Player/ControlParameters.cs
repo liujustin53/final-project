@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 /// Globally adjusts player control settings.
 [CreateAssetMenu(menuName = "Game/Controls/Control Parameters")]
 public class ControlParameters : SingletonScriptableObject<ControlParameters>
@@ -20,16 +19,30 @@ public class ControlParameters : SingletonScriptableObject<ControlParameters>
     /// <summary> The Player will try to jump for this long after first pressing the button </summary>
     public static float jumpBuffer => instance._jumpBuffer;
 
+    [SerializeField]
+    private float _lookSensitivity = 1;
 
+    [SerializeField]
+    private bool _invertX;
 
-    [SerializeField] private float _lookSensitivity = 1;
-    [SerializeField] private bool _invertX;
-    [SerializeField] private bool _invertY;
+    [SerializeField]
+    private bool _invertY;
 
-    [SerializeField] private float _zoomSensitivity = 0.25f;
-    [SerializeField] private float _zoomSmoothing = 0.5f;
-    [SerializeField] private float _minCameraDistance = 1.5f;
-    [SerializeField] private float _maxCameraDistance = 10f;
-    [SerializeField] private float _coyoteTime = 0.2f;
-    [SerializeField] private float _jumpBuffer = 0.2f;
+    [SerializeField]
+    private float _zoomSensitivity = 0.25f;
+
+    [SerializeField]
+    private float _zoomSmoothing = 0.5f;
+
+    [SerializeField]
+    private float _minCameraDistance = 1.5f;
+
+    [SerializeField]
+    private float _maxCameraDistance = 10f;
+
+    [SerializeField]
+    private float _coyoteTime = 0.2f;
+
+    [SerializeField]
+    private float _jumpBuffer = 0.2f;
 }

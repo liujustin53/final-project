@@ -3,23 +3,32 @@ using UnityEngine;
 /// Allows you to easily swap out various Spells to the Player's spell slots.
 public class SpellManager : MonoBehaviour
 {
-    [SerializeField] private Spell primaryAttack;
-    [SerializeField] private Spell blinkSpell;
-    [SerializeField] private Spell healSpell;
+    [SerializeField]
+    private Spell primaryAttack;
 
-    void PrimaryInvoke() {
+    [SerializeField]
+    private Spell blinkSpell;
+
+    [SerializeField]
+    private Spell healSpell;
+
+    void PrimaryInvoke()
+    {
         primaryAttack.StartCast();
     }
 
-    void PrimaryCancel() {
+    void PrimaryCancel()
+    {
         primaryAttack.ReleaseCast();
     }
 
-    void BlinkInvoke() {
+    void BlinkInvoke()
+    {
         blinkSpell.StartCast();
     }
 
-    void HealInvoke() {
+    void HealInvoke()
+    {
         healSpell.StartCast();
     }
 
@@ -31,7 +40,8 @@ public class SpellManager : MonoBehaviour
         InputManager.heal.AddListener(this.HealInvoke);
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
         InputManager.fire.RemoveListener(this.PrimaryInvoke);
         InputManager.fireRelease.RemoveListener(this.PrimaryCancel);
         InputManager.blink.RemoveListener(this.BlinkInvoke);

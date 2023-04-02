@@ -1,4 +1,5 @@
-public enum GameOver {
+public enum GameOver
+{
     Win,
     Lose
 }
