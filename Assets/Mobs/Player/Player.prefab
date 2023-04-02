@@ -1495,10 +1495,11 @@ GameObject:
   - component: {fileID: 230061648164865777}
   - component: {fileID: 1017288542213935063}
   - component: {fileID: 1801146415649543676}
-  - component: {fileID: 657732396}
-  - component: {fileID: 657732397}
-  - component: {fileID: 3057207386854279916}
   - component: {fileID: 657732398}
+  - component: {fileID: 657732397}
+  - component: {fileID: 657732396}
+  - component: {fileID: 3057207386854279916}
+  - component: {fileID: 420664596800948669}
   - component: {fileID: 657732399}
   - component: {fileID: 657732400}
   - component: {fileID: 657732401}
@@ -1658,7 +1659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f407e5c78511ce98eb67651a0d499cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &657732396
+--- !u!114 &657732398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1667,13 +1668,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1017288542213985679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ed2a2955cf7f76381cb852620de06c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd3783e320de5ae7888ca3dfa2c3576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usePooler: 0
-  pooler: {fileID: 0}
-  prefab: {fileID: 2446050470578459077, guid: 73dedeaec680e4a0aa7fc05f294c8feb, type: 3}
-  point: {fileID: 1827675995}
+  primaryAttack: {fileID: 657732397}
+  blinkSpell: {fileID: 3057207386854279916}
 --- !u!114 &657732397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1690,6 +1689,22 @@ MonoBehaviour:
   _cooldown: 0.25
   spellSFX: {fileID: 8300000, guid: 27ff5a5ce7a66ac4ca733705b86f73ae, type: 3}
   spawner: {fileID: 657732396}
+--- !u!114 &657732396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017288542213985679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ed2a2955cf7f76381cb852620de06c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usePooler: 0
+  pooler: {fileID: 0}
+  prefab: {fileID: 2446050470578459077, guid: 73dedeaec680e4a0aa7fc05f294c8feb, type: 3}
+  point: {fileID: 1827675995}
 --- !u!114 &3057207386854279916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1721,7 @@ MonoBehaviour:
   _cooldown: 1
   spellSFX: {fileID: 0}
   blinkDistance: 10
---- !u!114 &657732398
+--- !u!114 &420664596800948669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1715,11 +1730,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1017288542213985679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd3783e320de5ae7888ca3dfa2c3576, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e667290f9cf311449399e03fe4fa59b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryAttack: {fileID: 657732397}
-  blinkSpell: {fileID: 3057207386854279916}
+  fireMode: 0
+  _cooldown: 0
+  spellSFX: {fileID: 0}
+  healAmount: 10
 --- !u!114 &657732399
 MonoBehaviour:
   m_ObjectHideFlags: 0
