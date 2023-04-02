@@ -11,24 +11,40 @@ public class BossBehavior : MonoBehaviour, KillResponse
     PortalEntrance portal;
 
     [SerializeField]
-    Transform spawnPoint;
-
-    [SerializeField]
-    float rotationAnlge = 45;
-
-    [SerializeField]
     AudioClip winSFX;
+
+    [SerializeField] float targetDistanceToPlayer = 3;
+
+    [SerializeField] int pursueHP = 50;
+    Mortal mortal;
+
+    ExtensibleStateMachine stateMachine;
+    [SerializeField] GameObject waypointParent;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(false);
+        stateMachine = new ExtensibleStateMachine();
+        Transform player = GameObject.FindGameObjectWithTag("PlayerHitTarget").transform;
+        mortal = GetComponent<Mortal>();
+
+        Patrol patrol = new Patrol(gameObject, waypointParent.GetComponentsInChildren<Transform>(), 0.5f);
+        Pursue pursue = new Pursue(gameObject, player, targetDistanceToPlayer);
+
+        stateMachine.AddTransition(patrol, pursue, ShouldPursue);
+
+        stateMachine.SetState(patrol);
+    }
+
+    bool ShouldPursue() {
+        return mortal.hp < pursueHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        spawnPoint.rotation *= Quaternion.Euler(Vector3.up * rotationAnlge * Time.deltaTime);
+        stateMachine.Update();
     }
 
     public void OnKilled()

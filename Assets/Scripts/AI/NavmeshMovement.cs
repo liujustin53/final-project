@@ -7,6 +7,7 @@ public class NavmeshMovement : MonoBehaviour
     [SerializeField] float tolerance = 0.5f;
     [SerializeField] float lookAhead =  1f;
     [SerializeField] float forwardAttraction = 0.5f;
+    public float stoppingDistance = 0f;
 
     Vector3 destination;
     PhysicsMover mover;
@@ -30,7 +31,6 @@ public class NavmeshMovement : MonoBehaviour
     }
 
     public void SetDestination(Vector3 dest, float delay = 0) {
-        Debug.Log("Setting new destnation in " + delay + " seconds");
         if (Vector3.Distance(dest, this.destination) < 0.01) return;
         this.destination = dest;
         CancelInvoke("ApplyDestination");
@@ -55,6 +55,14 @@ public class NavmeshMovement : MonoBehaviour
         }
         NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 2, NavMesh.AllAreas);
         here = hit.position;
+
+
+        if (
+            Vector3.Distance(here, path.corners[^1]) - stoppingDistance < Mathf.Max(mover.DistanceToStop(), tolerance)
+        ) {
+            mover.Movement = Vector2.zero;
+            return;
+        }
 
         UpdateSeek();
 

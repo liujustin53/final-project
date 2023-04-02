@@ -37,10 +37,12 @@ public class ExtensibleStateMachine
                 return;
             }
         }
-        foreach (var transition in transitions[currentState.GetType()]) {
-            if (transition.Condition()) {
-                SetState(transition.To);
-                return;
+        if (transitions.ContainsKey(currentState.GetType())) {
+            foreach (var transition in transitions[currentState.GetType()]) {
+                if (transition.Condition()) {
+                    SetState(transition.To);
+                    return;
+                }
             }
         }
         currentState.Update();

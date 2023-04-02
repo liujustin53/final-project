@@ -38,6 +38,7 @@ public class Patrol : ExtensibleStateMachine.State
         if (Vector3.Distance(gameObject.transform.position, waypoints[target].position) < tolerance) {
             target = (target + 1) % waypoints.Length;
             navigator.SetDestination(waypoints[target].position, delayAtWaypoint);
+            navigator.stoppingDistance = tolerance;
         }
     }
 }

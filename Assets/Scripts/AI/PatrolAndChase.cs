@@ -22,7 +22,7 @@ public class PatrolAndChase : MonoBehaviour
         stateMachine = new ExtensibleStateMachine();
 
         patrol = new Patrol(gameObject, waypointParent.GetComponentsInChildren<Transform>(), delayAtWaypoint);
-        pursue = new Pursue(gameObject, player.transform);
+        pursue = new Pursue(gameObject, player.transform, 1);
 
         stateMachine.AddTransition(patrol, pursue, FoundPlayer);
         stateMachine.AddTransition(pursue, patrol, LostPlayer);
