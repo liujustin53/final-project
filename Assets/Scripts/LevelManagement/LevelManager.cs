@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class LevelManager : MonoBehaviour
 
     /// <summary> Called when pausing or unpausing the game </summary>
     public static UnityAction OnTogglePause;
+
+    [SerializeField]
+    private Text gameText;
 
     private GameOver gameOverType;
     float rawTimeScale;
@@ -41,6 +45,8 @@ public class LevelManager : MonoBehaviour
         instance.gameOverType = GameOver.Lose;
 
         isGameOver = true;
+        instance.gameText.gameObject.SetActive(true);
+        instance.gameText.text = "GAME OVER!";
     }
 
     public static void Win() {
@@ -50,6 +56,8 @@ public class LevelManager : MonoBehaviour
         instance.gameOverType = GameOver.Win;
 
         isGameOver = true;
+        instance.gameText.gameObject.SetActive(true);
+        instance.gameText.text = "YOU WIN!";
     }
 
     public void NextLevel() {
@@ -78,6 +86,7 @@ public class LevelManager : MonoBehaviour
             timeSinceGameOver += Time.unscaledDeltaTime;
             if (timeSinceGameOver >= 2.0f) {
                 if (gameOverType == GameOver.Win) {
+                    
                     NextLevel();
                 } else {
                     RetryLevel();

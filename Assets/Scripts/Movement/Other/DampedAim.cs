@@ -11,6 +11,10 @@ public class DampedAim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(target == null)
+        {
+            return;
+        }
         Vector3 toTarget = (target.position - transform.position).normalized;
         Quaternion targetRot = Quaternion.LookRotation(toTarget, Camera.main.transform.up);
 

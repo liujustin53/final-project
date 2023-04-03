@@ -75,8 +75,9 @@ public class NavmeshMovement : MonoBehaviour
         }
 
         UpdateSeek();
-
+        
         MoveToSeek();
+        FaceForward();
     }
 
     void MoveToSeek()
@@ -88,6 +89,17 @@ public class NavmeshMovement : MonoBehaviour
         }
         Vector3 seekForce = seek - transform.position;
         mover.Movement = new Vector2(seekForce.x, seekForce.z).normalized;
+    }
+
+    void FaceForward()
+    {
+        if (mover.velocityXZ.magnitude < 0.1)
+            return;
+        if (!mover.isGrounded)
+            return;
+
+        float target = Mathf.Atan2(mover.velocityXZ.x, mover.velocityXZ.y) * Mathf.Rad2Deg;
+        mover.TargetRotation = Quaternion.Euler(0, target, 0);
     }
 
     void UpdateSeek()

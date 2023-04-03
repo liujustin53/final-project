@@ -48,5 +48,6 @@ public class Patrol : ExtensibleStateMachine.State
             navigator.SetDestination(waypoints[target].position, delayAtWaypoint);
             navigator.stoppingDistance = 0;
         }
+
     }
 }
