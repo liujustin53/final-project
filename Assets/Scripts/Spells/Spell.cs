@@ -3,24 +3,21 @@ using UnityEngine;
 public abstract class Spell : MonoBehaviour
 {
     // public, read-only references to cooldown state
-    public float cooldown => _cooldown;
-    public float countdown => _countdown;
+    [field: SerializeField] public float cooldown { get; private set; }
+    [field: SerializeField] public float countdown { get; private set; }
+    public float readiness => Mathf.Clamp01(1 - (countdown / cooldown));
     public bool readyToCast
     {
         get { return countdown <= 0; }
     }
 
     [SerializeField]
-    FireMode fireMode;
-
-    [SerializeField]
-    float _cooldown;
+    FireMode fireMode; 
 
     [SerializeField]
     AudioClip spellSFX;
 
     private bool firing;
-    private float _countdown;
 
     public void StartCast()
     {
@@ -41,11 +38,11 @@ public abstract class Spell : MonoBehaviour
 
     public void Update()
     {
-        if (_countdown > 0)
+        if (countdown > 0)
         {
-            _countdown -= Time.deltaTime;
+            countdown -= Time.deltaTime;
         }
-        else if (firing && _countdown <= 0)
+        else if (firing && countdown <= 0)
         {
             _Fire();
         }
@@ -62,7 +59,7 @@ public abstract class Spell : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(spellSFX, Camera.main.transform.position);
         }
-        _countdown = _cooldown;
+        countdown = cooldown;
     }
 
     protected abstract void Fire();

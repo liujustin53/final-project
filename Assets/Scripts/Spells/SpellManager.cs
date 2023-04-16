@@ -42,19 +42,23 @@ public class SpellManager : MonoBehaviour
 
     void OnEnable()
     {
+        /*
         InputManager.fire.AddListener(this.PrimaryInvoke);
         InputManager.fireRelease.AddListener(this.PrimaryCancel);
         InputManager.blink.AddListener(this.BlinkInvoke);
         InputManager.heal.AddListener(this.HealInvoke);
         InputManager.fireball.AddListener(this.FireballInvoke);
+        */
     }
 
     void OnDisable()
     {
+        /*
         InputManager.fire.RemoveListener(this.PrimaryInvoke);
         InputManager.fireRelease.RemoveListener(this.PrimaryCancel);
         InputManager.blink.RemoveListener(this.BlinkInvoke);
         InputManager.heal.RemoveListener(this.HealInvoke);
         InputManager.fireball.RemoveListener(this.FireballInvoke);
+        */
     }
 }

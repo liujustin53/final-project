@@ -784,8 +784,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9684fe0e27f33e84cab661aa8731caaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <cooldown>k__BackingField: 4
+  <countdown>k__BackingField: 0
   fireMode: 1
-  _cooldown: 1
   spellSFX: {fileID: 0}
   spawner: {fileID: 8381176122382805377}
 --- !u!114 &8381176122382805377

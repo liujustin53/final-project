@@ -20,11 +20,6 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
     public static Vector2 move => instance._move;
     public static UnityEvent jump => instance._jump;
     public static UnityEvent jumpRelease => instance._jumpRelease;
-    public static UnityEvent fire => instance._fire;
-    public static UnityEvent fireRelease => instance._fireRelease;
-    public static UnityEvent blink => instance._blink;
-    public static UnityEvent heal => instance._heal;
-    public static UnityEvent fireball => instance._fireball;
     public static float deltaZoom => instance._deltaZoom;
 
     public static UnityEvent pause => instance._pause;
@@ -49,14 +44,7 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            fire.Invoke();
-        }
-        if (context.canceled)
-        {
-            fireRelease.Invoke();
-        }
+        primaryFire.Invoke(context);
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -102,18 +90,12 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
 
     public void OnBlink(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            blink.Invoke();
-        }
+        blink.Invoke(context);
     }
 
     public void OnHeal(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            heal.Invoke();
-        }
+        heal.Invoke(context);
     }
 
     void OnValidate()
@@ -123,10 +105,7 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
 
     public void OnFireball1(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            fireball.Invoke();
-        }
+        secondaryFire.Invoke(context);
     }
 
     [HideInInspector]
@@ -141,24 +120,14 @@ public class InputManager : SingletonScriptableObject<InputManager>, PlayerContr
     [HideInInspector]
     public UnityEvent _jumpRelease;
 
-    [HideInInspector]
-    public UnityEvent _fire;
-
-    [HideInInspector]
-    public UnityEvent _fireRelease;
-
-    [HideInInspector]
-    public UnityEvent _blink;
-
-    [HideInInspector]
-    public UnityEvent _heal;
+    public ButtonEvent primaryFire;
+    public ButtonEvent secondaryFire;
+    public ButtonEvent blink;
+    public ButtonEvent heal;
 
     [HideInInspector]
     public float _deltaZoom;
 
     [HideInInspector]
     public UnityEvent _pause;
-
-    [HideInInspector]
-    public UnityEvent _fireball;
 }

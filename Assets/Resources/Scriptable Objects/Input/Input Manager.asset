@@ -12,5 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3810b267aba62a5e1ab4524e5f7f0ec7, type: 3}
   m_Name: Input Manager
   m_EditorClassIdentifier: 
-  look: {x: 0, y: 0}
-  move: {x: 0, y: 0}
+  _deltaLook: {x: 0, y: 0}
+  _move: {x: 0, y: 0}
+  _jump:
+    m_PersistentCalls:
+      m_Calls: []
+  _jumpRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  primaryFire: {fileID: 11400000, guid: 5ab50ee5ba20b32e1a5e32fb3ffcbf8d, type: 2}
+  secondaryFire: {fileID: 11400000, guid: 1b376355ad78858b1aa2d5ae50cb4240, type: 2}
+  blink: {fileID: 11400000, guid: a00b8527a5f28ceb3b5559921497bba2, type: 2}
+  heal: {fileID: 11400000, guid: e2c6bbbc30eccee8da2132a48043ed68, type: 2}
+  _deltaZoom: 0
+  _pause:
+    m_PersistentCalls:
+      m_Calls: []

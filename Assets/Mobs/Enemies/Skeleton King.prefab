@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 6424173080829299998}
   - component: {fileID: 6424173080829299999}
   - component: {fileID: 6424173080829300000}
+  - component: {fileID: 1319909695028490458}
   m_Layer: 0
   m_Name: Skeleton King
   m_TagString: Enemy
@@ -397,8 +398,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9684fe0e27f33e84cab661aa8731caaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <cooldown>k__BackingField: 1
+  <countdown>k__BackingField: 0
   fireMode: 1
-  _cooldown: 1
   spellSFX: {fileID: 0}
   spawner: {fileID: 5039573178173771124}
 --- !u!114 &5039573178173771147
@@ -499,6 +501,19 @@ MonoBehaviour:
   stickyLength: 0.15
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   Movement: {x: 0, y: 0}
+--- !u!114 &1319909695028490458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039573178166334184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad38dcb24e50661138bff9c4a12b809b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 5172730432576778803}
 --- !u!1 &5039573178166334190
 GameObject:
   m_ObjectHideFlags: 0
