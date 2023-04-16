@@ -21,7 +21,7 @@ public class MouseLook : MonoBehaviour
 
     public void Look()
     {
-        Vector2 mouseLook = InputManager.deltaLook * ControlParameters.lookSensitivity;
+        Vector2 mouseLook = InputManager.deltaLook * ControlParameters.lookSensitivity * Time.timeScale;
         look.y += mouseLook.x * (ControlParameters.invertX ? -1 : 1);
         look.x += mouseLook.y * (ControlParameters.invertY ? -1 : 1);
         look.x = Mathf.Clamp(look.x, -90, 90);
@@ -30,7 +30,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (LevelManager.isGameOver)
+        if (LevelManager.isGameOver || LevelManager.isPaused)
             return;
         Look();
         transform.rotation = Quaternion.Euler(look);

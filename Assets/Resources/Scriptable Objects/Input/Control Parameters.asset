@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9b62305d9e8b524bd009ae533b8b6f, type: 3}
   m_Name: Control Parameters
   m_EditorClassIdentifier: 
-  _lookSensitivity: 0.5
+  _lookSensitivity: 0.7921961
   _invertX: 0
   _invertY: 1
   _zoomSensitivity: 0.25

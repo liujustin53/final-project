@@ -700,7 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooler: {fileID: 0}
   element: {fileID: 11400000, guid: 7671f6b001c51365b8887e0f4d948ec4, type: 2}
-  hurtSFX: {fileID: 8300000, guid: bcf816b3c2534144fbfc62106b4d3669, type: 3}
+  hurtSFX: {fileID: 8300000, guid: 65999069009ab2b44b9a58c4aef2c75e, type: 3}
   <maxHp>k__BackingField: 100
   <team>k__BackingField: {fileID: 11400000, guid: 44c1e9a07e353be63aab7da295fcc6b9, type: 2}
 --- !u!114 &979474197450108296
@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal: {fileID: 0}
-  winSFX: {fileID: 8300000, guid: b65f652da830fa44184489dbcdbbfeda, type: 3}
+  winSFX: {fileID: 8300000, guid: 83767ac9be2c1b145a2c9df93d4c2e8d, type: 3}
   targetDistanceToPlayer: 3
   pursueHP: 50
   waypointParent: {fileID: 0}

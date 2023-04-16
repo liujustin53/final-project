@@ -36,6 +36,9 @@ public class LevelManager : MonoBehaviour
         lastTimeScale = 1;
         timeSinceGameOver = 0;
         Time.timeScale = 1;
+
+        SaveManager.RetrievePlayTime();
+        SaveManager.RetrieveControlParameters();
     }
 
     public static void Lose() {
@@ -45,6 +48,7 @@ public class LevelManager : MonoBehaviour
         instance.gameOverType = GameOver.Lose;
 
         isGameOver = true;
+        SaveManager.SavePlayTime();
         instance.gameText.gameObject.SetActive(true);
         instance.gameText.text = "GAME OVER!";
     }
@@ -56,6 +60,7 @@ public class LevelManager : MonoBehaviour
         instance.gameOverType = GameOver.Win;
 
         isGameOver = true;
+        SaveManager.SavePlayTime();
         instance.gameText.gameObject.SetActive(true);
         instance.gameText.text = "YOU WIN!";
     }
@@ -74,6 +79,7 @@ public class LevelManager : MonoBehaviour
             rawTimeScale -= Time.unscaledDeltaTime / smoothTime;
         } else {
             rawTimeScale += Time.unscaledDeltaTime / smoothTime;
+            SaveManager.Playtime += Time.deltaTime;
         }
         rawTimeScale = Mathf.Clamp01(rawTimeScale);
         float timeScale = Mathf.SmoothStep(0, 1, rawTimeScale);
