@@ -8,15 +8,18 @@ public class DampedAim : MonoBehaviour
     [SerializeField]
     protected Transform target;
 
+    [SerializeField]
+    protected Transform alignYAxisWith;
+
     // Update is called once per frame
     void Update()
     {
-        if(target == null)
+        if (target == null)
         {
             return;
         }
         Vector3 toTarget = (target.position - transform.position).normalized;
-        Quaternion targetRot = Quaternion.LookRotation(toTarget, Camera.main.transform.up);
+        Quaternion targetRot = Quaternion.LookRotation(toTarget, alignYAxisWith.up);
 
         transform.rotation = Quaternion.Slerp(
             transform.rotation,

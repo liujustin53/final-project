@@ -350,7 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827675995}
-  - component: {fileID: 3470184982636308186}
+  - component: {fileID: 4245391050482830931}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -374,7 +374,7 @@ Transform:
   m_Father: {fileID: 1017288542213792565}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3470184982636308186
+--- !u!114 &4245391050482830931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,11 +383,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1827675994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 931eb80172aa29e969ee24d5d90f7564, type: 3}
+  m_Script: {fileID: 11500000, guid: d66e24050777b814dbc044e3b67b3116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damping: 0
   target: {fileID: 3418501790752047477}
+  alignYAxisWith: {fileID: 0}
 --- !u!1 &2061207532
 GameObject:
   m_ObjectHideFlags: 0
