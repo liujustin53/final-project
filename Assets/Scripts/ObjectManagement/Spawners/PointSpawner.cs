@@ -4,7 +4,7 @@ using UnityEngine;
 public class PointSpawner : Spawner
 {
     [SerializeField]
-    Transform point;
+    protected Transform point;
 
     void Awake()
     {
