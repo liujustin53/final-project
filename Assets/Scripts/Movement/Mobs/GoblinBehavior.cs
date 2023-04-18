@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GoblinBehavior : MonoBehaviour
 {
-
     [SerializeField]
     float targetDistanceToPlayer = 3;
+
     [SerializeField]
     float pursuitDistance = 10;
 
@@ -41,7 +41,7 @@ public class GoblinBehavior : MonoBehaviour
 
     bool ShouldPursue()
     {
-        if(player == null)
+        if (player == null)
         {
             return false;
         }

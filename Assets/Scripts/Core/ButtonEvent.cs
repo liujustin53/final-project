@@ -3,17 +3,23 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using System;
 
-[CreateAssetMenu(menuName ="Game/Controls/ButtonEvent")]
+[CreateAssetMenu(menuName = "Game/Controls/ButtonEvent")]
 public class ButtonEvent : ScriptableObject
 {
-    [NonSerialized] public UnityEvent press = new UnityEvent();
-    [NonSerialized] public UnityEvent release = new UnityEvent();
+    [NonSerialized]
+    public UnityEvent press = new UnityEvent();
 
-    public void Invoke(InputAction.CallbackContext context) {
+    [NonSerialized]
+    public UnityEvent release = new UnityEvent();
 
-        if (context.started) {
+    public void Invoke(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
             press.Invoke();
-        } else if (context.canceled) {
+        }
+        else if (context.canceled)
+        {
             release.Invoke();
         }
     }

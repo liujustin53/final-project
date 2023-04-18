@@ -10,35 +10,41 @@ public class Pursue : ExtensibleStateMachine.State
 
     float stoppingDistance;
 
-    public Pursue(GameObject gameoOject, Transform target, float stoppingDistance) {
+    public Pursue(GameObject gameoOject, Transform target, float stoppingDistance)
+    {
         this.target = target;
         navigator = gameoOject.GetComponent<NavmeshMovement>();
         this.stoppingDistance = stoppingDistance;
     }
 
-    public override void OnEnter() {
+    public override void OnEnter()
+    {
         Debug.Log("Entering pursue");
         timeSinceLastSeen = 0;
         navigator.stoppingDistance = stoppingDistance;
     }
 
-    public void SetTarget(Transform target) {
+    public void SetTarget(Transform target)
+    {
         this.target = target;
     }
 
     public override void Update()
     {
-        if (CanSeeTarget()) {
+        if (CanSeeTarget())
+        {
             lastKnownPosition = target.position;
             timeSinceLastSeen = 0;
             navigator.SetDestination(lastKnownPosition);
-        } else {
+        }
+        else
+        {
             timeSinceLastSeen += Time.deltaTime;
         }
-
     }
 
-    public bool CanSeeTarget() {
+    public bool CanSeeTarget()
+    {
         return navigator.CanSee(target.position);
     }
 }

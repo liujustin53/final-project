@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] string nextLevel;
+    [SerializeField]
+    string nextLevel;
     public static bool isGameOver;
     public static bool isPaused;
     private static LevelManager instance;
@@ -41,8 +42,10 @@ public class LevelManager : MonoBehaviour
         SaveManager.RetrieveControlParameters();
     }
 
-    public static void Lose() {
-        if (OnGameOver != null) {
+    public static void Lose()
+    {
+        if (OnGameOver != null)
+        {
             OnGameOver.Invoke(GameOver.Lose);
         }
         instance.gameOverType = GameOver.Lose;
@@ -53,8 +56,10 @@ public class LevelManager : MonoBehaviour
         instance.gameText.text = "GAME OVER!";
     }
 
-    public static void Win() {
-        if (OnGameOver != null) {
+    public static void Win()
+    {
+        if (OnGameOver != null)
+        {
             OnGameOver.Invoke(GameOver.Win);
         }
         instance.gameOverType = GameOver.Win;
@@ -65,43 +70,56 @@ public class LevelManager : MonoBehaviour
         instance.gameText.text = "YOU WIN!";
     }
 
-    public void NextLevel() {
-        if (nextLevel == null || nextLevel.Length == 0) return;
+    public void NextLevel()
+    {
+        if (nextLevel == null || nextLevel.Length == 0)
+            return;
         SceneManager.LoadScene(nextLevel);
     }
 
-    public void RetryLevel() {
+    public void RetryLevel()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void Update() {
-        if (isGameOver || isPaused) {
+    void Update()
+    {
+        if (isGameOver || isPaused)
+        {
             rawTimeScale -= Time.unscaledDeltaTime / smoothTime;
-        } else {
+        }
+        else
+        {
             rawTimeScale += Time.unscaledDeltaTime / smoothTime;
             SaveManager.Playtime += Time.deltaTime;
         }
         rawTimeScale = Mathf.Clamp01(rawTimeScale);
         float timeScale = Mathf.SmoothStep(0, 1, rawTimeScale);
-        if (timeScale != lastTimeScale) {
+        if (timeScale != lastTimeScale)
+        {
             Time.timeScale = timeScale;
             lastTimeScale = timeScale;
         }
 
-        if (isGameOver) {
+        if (isGameOver)
+        {
             timeSinceGameOver += Time.unscaledDeltaTime;
-            if (timeSinceGameOver >= 2.0f) {
-                if (gameOverType == GameOver.Win) {
-                    
+            if (timeSinceGameOver >= 2.0f)
+            {
+                if (gameOverType == GameOver.Win)
+                {
                     NextLevel();
-                } else {
+                }
+                else
+                {
                     RetryLevel();
                 }
             }
         }
     }
 
-    private void TogglePause() {
+    private void TogglePause()
+    {
         /*
         isPaused = !isPaused;
         if (OnTogglePause != null) {
@@ -109,7 +127,7 @@ public class LevelManager : MonoBehaviour
         }
         */
     }
-    
+
     void OnEnable()
     {
         InputManager.pause.AddListener(this.TogglePause);

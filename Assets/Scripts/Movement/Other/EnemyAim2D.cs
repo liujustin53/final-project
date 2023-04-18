@@ -7,11 +7,9 @@ public class EnemyAim2D : MonoBehaviour
     [SerializeField]
     private float damping = 0;
     Transform target;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update()
@@ -30,7 +28,6 @@ public class EnemyAim2D : MonoBehaviour
             targetRot,
             1 - Mathf.Pow(damping, Time.deltaTime)
         );
-        
     }
 
     public void SetTarget2D(Transform target)

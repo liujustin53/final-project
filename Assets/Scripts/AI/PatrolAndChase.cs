@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class PatrolAndChase : MonoBehaviour
 {
-    [SerializeField] GameObject waypointParent;
-    [SerializeField] float delayAtWaypoint = 2;
-    [SerializeField] GameObject player;
+    [SerializeField]
+    GameObject waypointParent;
+
+    [SerializeField]
+    float delayAtWaypoint = 2;
+
+    [SerializeField]
+    GameObject player;
     ExtensibleStateMachine stateMachine;
     Collider playerCollider;
 
     Patrol patrol;
     Pursue pursue;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (this.player == null) {
+        if (this.player == null)
+        {
             this.player = GameObject.FindGameObjectWithTag("Player");
         }
         playerCollider = this.player.GetComponent<Collider>();
         stateMachine = new ExtensibleStateMachine();
 
-        patrol = new Patrol(gameObject, waypointParent.GetComponentsInChildren<Transform>(), delayAtWaypoint);
+        patrol = new Patrol(
+            gameObject,
+            waypointParent.GetComponentsInChildren<Transform>(),
+            delayAtWaypoint
+        );
         pursue = new Pursue(gameObject, player.transform, 1);
 
         stateMachine.AddTransition(patrol, pursue, FoundPlayer);
@@ -30,11 +41,13 @@ public class PatrolAndChase : MonoBehaviour
         stateMachine.SetState(patrol);
     }
 
-    bool FoundPlayer() {
+    bool FoundPlayer()
+    {
         return pursue.CanSeeTarget();
     }
 
-    bool LostPlayer() {
+    bool LostPlayer()
+    {
         return pursue.timeSinceLastSeen > 5;
     }
 

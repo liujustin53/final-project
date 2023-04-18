@@ -3,8 +3,11 @@ using UnityEngine;
 public abstract class Spell : MonoBehaviour
 {
     // public, read-only references to cooldown state
-    [field: SerializeField] public float cooldown { get; private set; }
-    [field: SerializeField] public float countdown { get; private set; }
+    [field: SerializeField]
+    public float cooldown { get; private set; }
+
+    [field: SerializeField]
+    public float countdown { get; private set; }
     public float readiness => Mathf.Clamp01(1 - (countdown / cooldown));
     public bool readyToCast
     {
@@ -12,7 +15,7 @@ public abstract class Spell : MonoBehaviour
     }
 
     [SerializeField]
-    FireMode fireMode; 
+    FireMode fireMode;
 
     [SerializeField]
     AudioClip spellSFX;

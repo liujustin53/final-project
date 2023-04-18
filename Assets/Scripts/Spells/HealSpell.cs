@@ -6,6 +6,7 @@ public class HealSpell : Spell
 {
     [SerializeField]
     private int healAmount = 10;
+
     [SerializeField]
     private GameObject HealVFX;
 

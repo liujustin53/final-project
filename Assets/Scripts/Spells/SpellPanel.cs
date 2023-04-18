@@ -10,17 +10,27 @@ public class SpellPanel : MonoBehaviour
 
     void Awake()
     {
-        if (_instance == null) {
+        if (_instance == null)
+        {
             _instance = this;
-        } else if (_instance != this) {
-            Debug.LogWarning("Multiple spell panels exist: [" + _instance.gameObject.name + "], [" + gameObject.name + "]");
+        }
+        else if (_instance != this)
+        {
+            Debug.LogWarning(
+                "Multiple spell panels exist: ["
+                    + _instance.gameObject.name
+                    + "], ["
+                    + gameObject.name
+                    + "]"
+            );
             Destroy(this);
         }
     }
 
     void OnDestroy()
     {
-        if (_instance == this) {
+        if (_instance == this)
+        {
             _instance = null;
         }
     }

@@ -18,10 +18,12 @@ public class MainMenu : MonoBehaviour
         SaveManager.RetrieveControlParameters();
         cameraSensitivity.value = ControlParameters.lookSensitivity;
     }
+
     public void Update()
     {
         ControlParameters.lookSensitivity = cameraSensitivity.value;
     }
+
     public void StartGame()
     {
         SaveSettings();

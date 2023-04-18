@@ -4,9 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Controls/Control Parameters")]
 public class ControlParameters : SingletonScriptableObject<ControlParameters>
 {
-    public static float lookSensitivity { 
-                                        get { return instance._lookSensitivity; } 
-                                        set { instance._lookSensitivity = value; } }
+    public static float lookSensitivity
+    {
+        get { return instance._lookSensitivity; }
+        set { instance._lookSensitivity = value; }
+    }
     public static bool invertX => instance._invertX;
     public static bool invertY => instance._invertY;
 

@@ -75,7 +75,7 @@ public class NavmeshMovement : MonoBehaviour
         }
 
         UpdateSeek();
-        
+
         MoveToSeek();
         FaceForward();
     }

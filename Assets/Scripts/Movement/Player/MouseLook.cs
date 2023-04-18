@@ -21,7 +21,8 @@ public class MouseLook : MonoBehaviour
 
     public void Look()
     {
-        Vector2 mouseLook = InputManager.deltaLook * ControlParameters.lookSensitivity * Time.timeScale;
+        Vector2 mouseLook =
+            InputManager.deltaLook * ControlParameters.lookSensitivity * Time.timeScale;
         look.y += mouseLook.x * (ControlParameters.invertX ? -1 : 1);
         look.x += mouseLook.y * (ControlParameters.invertY ? -1 : 1);
         look.x = Mathf.Clamp(look.x, -90, 90);

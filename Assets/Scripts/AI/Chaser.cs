@@ -5,8 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(NavmeshMovement))]
 public class Chaser : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    [SerializeField]
+    Transform target;
     private NavmeshMovement navigator;
+
     // Start is called before the first frame update
     void Start()
     {

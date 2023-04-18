@@ -5,21 +5,16 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     public static float Playtime = 0f;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 
     public static float RetrievePlayTime()
     {
-        Playtime =  PlayerPrefs.GetFloat("Playtime", 0f);
+        Playtime = PlayerPrefs.GetFloat("Playtime", 0f);
         return Playtime;
     }
 
