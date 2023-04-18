@@ -6,14 +6,20 @@ public class BasicProjectileMovement : MonoBehaviour
 {
     [SerializeField]
     protected float speed = 10f;
+
     [SerializeField]
-    protected Vector2 inAccuracyModifier = Vector2.zero;
+    protected Vector2 inaccuracyModifier = Vector2.zero;
+
     new Rigidbody rigidbody;
 
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        transform.rotation *= Quaternion.Euler(Random.Range(-1, 1) * inAccuracyModifier.x, Random.Range(-1, 1) * inAccuracyModifier.y, 0);
+        transform.rotation *= Quaternion.Euler(
+            Random.Range(-1f, 1f) * inaccuracyModifier.x,
+            Random.Range(-1f, 1f) * inaccuracyModifier.y,
+            0
+        );
     }
 
     void OnEnable()
