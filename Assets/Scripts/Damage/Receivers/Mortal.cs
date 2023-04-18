@@ -32,7 +32,10 @@ public class Mortal : Killable, Damageable
             realDamage = this.element.GetRealDamage(dmg, damageType);
         }
         this.hp = Mathf.Max(0, hp - realDamage);
-        AudioSource.PlayClipAtPoint(hurtSFX, Camera.main.transform.position);
+        if(hurtSFX != null)
+        {
+            AudioSource.PlayClipAtPoint(hurtSFX, Camera.main.transform.position);
+        }
 
         Damageable.SendDamageEvent(gameObject, dmg, damageType);
 
