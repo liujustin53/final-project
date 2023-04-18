@@ -10,7 +10,7 @@ public class BasicProjectileMovement : MonoBehaviour
     [SerializeField]
     protected Vector2 inaccuracyModifier = Vector2.zero;
 
-    new Rigidbody rigidbody;
+    protected new Rigidbody rigidbody;
 
     void Awake()
     {
