@@ -9,6 +9,8 @@ TagManager:
   - EnemyProjectile
   - ProjectileParent
   - PlayerHitTarget
+  - Bullet
+  - Lava
   layers:
   - Default
   - TransparentFX

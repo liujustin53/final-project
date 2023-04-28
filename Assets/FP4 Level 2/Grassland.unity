@@ -20255,7 +20255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158bc858f9ca3dad791290d1e0faadd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 
+  nextLevel: Undead
   gameText: {fileID: 1916744245}
 --- !u!4 &779438598
 Transform:
