@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e956ea725d82a11e09fed6aeb9621dfe, type: 3}
+  m_Name: Level3MovementParams
+  m_EditorClassIdentifier: 
+  maxSpeed: 20
+  jumpHeight: 20
+  acceleration: 200
+  maxAccelForce: 150
+  airMaxAccelForce: 10
+  angularAcceleration: 100
+  angularDampening: 10
+  suspensionStrength: 100
+  suspensionDampening: 10

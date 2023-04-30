@@ -53,4 +53,12 @@ public class Mortal : Killable, Damageable
 
         Damageable.SendHealEvent(gameObject, health);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Lava"))
+        {
+            Kill();
+        }
+    }
 }

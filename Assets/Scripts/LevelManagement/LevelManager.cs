@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     private Text gameText;
+    public string winMsg = "YOU WIN!";
 
     private GameOver gameOverType;
     float rawTimeScale;
@@ -67,7 +68,7 @@ public class LevelManager : MonoBehaviour
         isGameOver = true;
         SaveManager.SavePlayTime();
         instance.gameText.gameObject.SetActive(true);
-        instance.gameText.text = "YOU WIN!";
+        instance.gameText.text = instance.winMsg;
     }
 
     public void NextLevel()
